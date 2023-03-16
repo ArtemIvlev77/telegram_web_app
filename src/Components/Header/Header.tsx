@@ -42,7 +42,7 @@ const Header = () => {
 	}
 
 	return (
-		<header className='bg-secondary h-1/4 flex px-5 justify-between items-center'>
+		<header className='bg-secondary h-1/4 flex px-4 justify-evenly items-center'>
 			<div className="flex flex-col gap-1 justify-center">
 				<span>{user?.username ?? 'Username'}</span>
 				<span>ID сервиса</span>

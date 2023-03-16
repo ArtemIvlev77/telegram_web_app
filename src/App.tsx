@@ -18,7 +18,6 @@ const {tg, onToggleButton} = useTelegram()
   return (
     <div className="App">
     <Header/>
-      ЭТО ПРИЛОЖЕНИЕ НА РЕАКТЕ БРАТАН
       <button onClick={onToggleButton}>toggle</button>
     </div>
   );

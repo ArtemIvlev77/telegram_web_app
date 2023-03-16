@@ -2,7 +2,6 @@ import React from 'react';
 import Button from '../Button/Button';
 import {useTelegram} from '../../hooks/useTelegram';
 import './Header.css'
-import refresh from '../../assets/refresh.svg'
 
 const Header = () => {
 	const {onClose, user, tg } = useTelegram()

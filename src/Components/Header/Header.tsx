@@ -42,7 +42,7 @@ const Header = () => {
 	}
 
 	return (
-		<header className='bg-secondary h-1/4 flex px-4 justify-evenly items-center'>
+		<header className='bg-secondary h-1/3 flex px-5 justify-evenly items-center'>
 			<div className="flex flex-col gap-1 justify-center">
 				<span>{user?.username ?? 'Username'}</span>
 				<span>ID сервиса</span>
@@ -55,13 +55,13 @@ const Header = () => {
 				Мои организации
 				<select name="organizations" id="organizations" value={organization} onChange={(e) => organizationChangeHandler(e)}>
 					{organizations.map((org) => (
-						<option value={org.invoiceNumber}>{org.organization}</option>
+						<option className='text-sm' value={org.invoiceNumber}>{org.organization}</option>
 					))}
 				</select>
 				Мои рейсы
 				<select name="races" id="races" value={race} onChange={(e) => raceHandler(e)}>
 					{races.map((race) => (
-						<option value={race.invoiceNumber}>#{race.invoiceNumber} {race.invoiceTitle}</option>
+						<option className='text-sm' value={race.invoiceNumber}>#{race.invoiceNumber} {race.invoiceTitle}</option>
 					))
 					}
 

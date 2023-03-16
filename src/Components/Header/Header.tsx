@@ -12,7 +12,7 @@ const Header = () => {
 	return (
 		<header className='bg-secondary h-12 flex px-5 justify-between items-center'>
 			<div className="flex flex-col gap-1">
-				<img  className="" src={person} alt="avatar"/>
+				<img  className="w-4 h-4" src={person} alt="avatar"/>
 				<span className={'username'}>{user?.username ?? 'Username'}</span>
 				<span>ID сервиса</span>
 				<span>Грузоперевозчик <Button className={'asd'} onClick={roleChangeHandler}/></span>

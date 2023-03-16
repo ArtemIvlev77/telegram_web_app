@@ -7,7 +7,7 @@ interface ButtonProps extends PropsWithChildren{
 const Button:FC<ButtonProps> = (props, {children}) => {
 	return (
 		<button {...props} className={'button ' + props.className}>
-			{children}
+			{...children}
 		</button>
 	);
 };

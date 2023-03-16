@@ -48,7 +48,7 @@ const Header = () => {
 				<span>ID сервиса</span>
 				<div className="flex items-center justify-between gap-2">
 				<span className="text-center">{role}</span>
-					<Button className="bg-[url('/src/assets/refresh.svg')] bg-no-repeat bg-center" onClick={roleChangeHandler}></Button>
+					<Button className="bg-[url('/src/assets/refresh.svg')] bg-no-repeat bg-center mr-2" onClick={roleChangeHandler}></Button>
 				</div>
 			</div>
 			<div className="flex flex-col gap-1 w-[50%]">

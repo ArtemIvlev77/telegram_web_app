@@ -35,7 +35,7 @@ const Table = () => {
 				{mockup.map((invoice) => (
 					<tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
 						<th scope="row" className="px-2 py-1 font-medium text-gray-900 break-words dark:text-white">
-							#{invoice.invoiceNumber} {' '}
+							#{invoice.invoiceNumber} {'\n '}
 							{invoice.organization}
 						</th>
 						<td className="px-2 py-1">

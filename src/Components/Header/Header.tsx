@@ -10,8 +10,8 @@ const Header = () => {
 		console.log('roleChanged')
 	}
 	return (
-		<header className='header'>
-			<div className="header__userInfo">
+		<header className='bg-secondary h-12 flex px-5 justify-between items-center'>
+			<div className="flex flex-col gap-1">
 				<img  className="" src={person} alt="avatar"/>
 				<span className={'username'}>{user?.username ?? 'Username'}</span>
 				<span>ID сервиса</span>

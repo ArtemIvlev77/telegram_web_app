@@ -7,8 +7,11 @@ const Header = () => {
 	const {onClose, user } = useTelegram()
 	return (
 		<header className='header'>
+			<div>
+				<img src={user?.photo_url} alt="avatar"/>
+				<span className={'username'}>{user?.username ?? 'Username'}</span>
+			</div>
 			<Button onClick={onClose}>Закрыть</Button>
-			<span className={'username'}>{user?.username ?? 'Username'}</span>
 		</header>
 	);
 };

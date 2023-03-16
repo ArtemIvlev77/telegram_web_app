@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '../Button/Button';
 import {useTelegram} from '../../hooks/useTelegram';
 import './Header.css'
-import person from '../../assets/person.svg'
+import refresh from '../../assets/refresh.svg'
 
 const Header = () => {
 	const {onClose, user, tg } = useTelegram()
@@ -11,12 +11,14 @@ const Header = () => {
 	}
 	return (
 		<header className='bg-secondary h-1/4 flex px-5 justify-between items-center'>
-			<div className="flex flex-col gap-1">
-				<span className={'username'}>{user?.username ?? 'Username'}</span>
+			<div className="flex flex-col gap-1 justify-center">
+				<span>{user?.username ?? 'Username'}</span>
 				<span>ID сервиса</span>
-				<span>Грузоперевозчик <Button className={'asd'} onClick={roleChangeHandler}/></span>
+				<div className="flex items-center">
+				<span className="text-center">Грузоперевозчик	</span>
+					<Button className="bg-[url('/src/assets/refresh.svg')] bg-no-repeat bg-center" onClick={roleChangeHandler}></Button>
+				</div>
 			</div>
-			<Button onClick={onClose}>Закрыть</Button>
 		</header>
 	);
 };

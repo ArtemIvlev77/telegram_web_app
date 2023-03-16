@@ -14,10 +14,6 @@
 	gap: 5px;
 }
 
-.username {
-	margin-left: auto;
-}
-
 .profile__avatar {
 	background-color: darkgrey;
 	border-radius: 100%;

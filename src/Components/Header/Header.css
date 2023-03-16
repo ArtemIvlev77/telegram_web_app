@@ -6,6 +6,13 @@
 	background-color:var(--tg-theme-secondary-bg-color);
 }
 
+.header__userInfo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 5px;
+}
+
 .username {
 	margin-left: auto;
 }

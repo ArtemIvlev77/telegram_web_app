@@ -7,7 +7,7 @@ const Header = () => {
 	const {onClose, user } = useTelegram()
 	return (
 		<header className='header'>
-			<div>
+			<div className="header__userInfo">
 				<img src={user?.photo_url} alt="avatar"/>
 				<span className={'username'}>{user?.username ?? 'Username'}</span>
 			</div>

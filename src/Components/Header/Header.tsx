@@ -11,6 +11,7 @@ const Header = () => {
 				<img src={user?.photo_url} alt="avatar"/>
 				<span className={'username'}>{user?.username ?? 'Username'}</span>
 			</div>
+			<div>{user}</div>
 			<Button onClick={onClose}>Закрыть</Button>
 		</header>
 	);

@@ -8,7 +8,7 @@ import {useTelegram} from './hooks/useTelegram';
 
 
 function App() {
-const {tg, safeUser, user, onToggleButton} = useTelegram()
+const {tg, user, onToggleButton} = useTelegram()
   useEffect(() => {
     tg.ready()
     return () => {
@@ -19,10 +19,6 @@ const {tg, safeUser, user, onToggleButton} = useTelegram()
     <div className="App">
     <Header/>
       <button onClick={onToggleButton}>toggle</button>
-      <h6>safe user</h6>
-      <span className='whitespace-pre-wrap'>{JSON.stringify(safeUser, null, 2)}</span>
-      <h6>user</h6>
-      <span className='whitespace-pre-wrap'>{JSON.stringify(user, null, 2)}</span>
     </div>
   );
 }

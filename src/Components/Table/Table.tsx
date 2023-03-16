@@ -1,14 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 const Table = () => {
-
 	const mockup = [
-		{invoiceNumber: '223', organization: 'OOO Ромашка', status: 'incoming', messages: 15, action: '', delete: ''},
-		{invoiceNumber: '255', organization: 'OOO OGon', status: 'awaits', messages: 15, action: '', delete: ''},
-		{invoiceNumber: '223', organization: 'OOO TOP', status: 'active', messages: 15, action: '', delete: ''},
-		{invoiceNumber: '6556', organization: 'OOO SAMLOG', status: 'success', messages: 15, action: '', delete: ''},
-		{invoiceNumber: '544', organization: 'OOO Ромашка', status: 'closed', messages: 15, action: '', delete: ''},
+		{id: 12,invoiceNumber: '223', organization: 'OOO Ромашка', status: 'incoming', messages: 15, action: '', delete: ''},
+		{id: 13,invoiceNumber: '255', organization: 'OOO OGon', status: 'awaits', messages: 15, action: '', delete: ''},
+		{id: 14,invoiceNumber: '223', organization: 'OOO TOP', status: 'active', messages: 15, action: '', delete: ''},
+		{id: 15,invoiceNumber: '6556', organization: 'OOO SAMLOG', status: 'success', messages: 15, action: '', delete: ''},
+		{id: 16,invoiceNumber: '544', organization: 'OOO Ромашка', status: 'closed', messages: 15, action: '', delete: ''},
 	]
+	const [invoiceList, setInvoiceList] = useState(mockup);
+	const deleteHandler = (id: number) => {
+		setInvoiceList(invoiceList.filter((el) => el.id !== id))
+	}
 	return (
 		<div className="relative mt-5">
 			<table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -48,7 +51,7 @@ const Table = () => {
 							<a href="">посмотреть и откликнуться</a>
 						</td>
 						<td className="px-2 py-1">
-							<button>X</button>
+							<button onClick={() => deleteHandler(invoice.id)}>X</button>
 						</td>
 					</tr>
 				))}

@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import Button from '../Button/Button';
 import {useTelegram} from '../../hooks/useTelegram';
-import './Header.css'
 
 const Header = () => {
 	const races = [
@@ -42,7 +41,7 @@ const Header = () => {
 	}
 
 	return (
-		<header className='bg-secondary h-1/3 flex px-5 justify-evenly items-center text-sm'>
+		<header className='bg-secondary h-28 flex px-5 py-1 justify-evenly items-center text-sm'>
 			<div className="flex flex-col gap-1 justify-center w-[50%]">
 				<span>{user?.username ?? 'Username'}</span>
 				<span>ID сервиса</span>

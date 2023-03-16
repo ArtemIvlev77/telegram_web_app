@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'bg-secondary': 'var(--tg-theme-secondary-bg-color)',
+        'secondary': 'var(--tg-theme-secondary-bg-color)',
         
       },
     },

@@ -14,7 +14,7 @@ const Header = () => {
 			<div className="header__userInfo">
 				<img  className="" src={user?.photo_url ?? person} alt="avatar"/>
 				<span className={'username'}>{user?.username ?? 'Username'}</span>
-				<pre>{JSON.stringify(user, null, 2)}</pre>
+				<span>{JSON.stringify(user, null, 2)}</span>
 				<span>ID сервиса</span>
 				<span>Грузоперевозчик <Button className={'asd'} onClick={roleChangeHandler}/></span>
 			</div>

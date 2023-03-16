@@ -1,5 +1,5 @@
 import {FC, PropsWithChildren} from 'react';
-
+import './Button.css'
 interface ButtonProps extends PropsWithChildren{
 	className?: string;
 	onClick: () => void;

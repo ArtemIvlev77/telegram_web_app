@@ -53,13 +53,13 @@ const Header = () => {
 			</div>
 			<div className="flex flex-col gap-1 w-[50%]">
 				Мои организации
-				<select name="organizations" id="organizations" value={organization} onChange={(e) => organizationChangeHandler(e)}>
+				<select name="organizations" id="organizations" onChange={(e) => organizationChangeHandler(e)}>
 					{organizations.map((org) => (
 						<option className='text-sm' value={org.invoiceNumber}>{org.organization}</option>
 					))}
 				</select>
 				Мои рейсы
-				<select name="races" id="races" value={race} onChange={(e) => raceHandler(e)}>
+				<select name="races" id="races" onChange={(e) => raceHandler(e)}>
 					{races.map((race) => (
 						<option className='text-sm' value={race.invoiceNumber}>#{race.invoiceNumber} {race.invoiceTitle}</option>
 					))

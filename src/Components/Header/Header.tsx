@@ -46,25 +46,28 @@ const Header = () => {
 
 	return (
 		<header className='bg-secondary h-28 flex flex-col px-5 py-1 justify-evenly items-center text-sm'>
-			<div className="flex  gap-1 justify-center">
+			<div className="flex justify-start gap-1">
 				<span>{user?.username ?? 'Username'}</span>
 				<span>ID сервиса</span>
 				<div className="flex items-center justify-between gap-2">
 				<span className="text-center">{role}</span>
 				</div>
 			</div>
-			<div className='flex bg-secondary p-1 rounded'>
+			<div className='flex bg-secondary p-1 rounded gap-2'>
 				<Button className="bg-tg-button" onClick={() => setRole(ROLES.executor)}>{ROLES.executor}</Button>
 				<Button className="bg-tg-button" onClick={() => setRole(ROLES.sender)}>{ROLES.sender}</Button>
 			</div>
-			<div className="flex gap-1">
-				Мои организации
+			<div className="flex  gap-1">
+				<div className='flex flex-col gap-1'>
+					<span className="text-tg-text">Мои организации</span>
 				<select name="organizations" id="organizations" onChange={(e) => organizationChangeHandler(e)}>
 					{organizations.map((org) => (
 						<option className='text-sm' value={ org.invoiceNumber}>{org.organization}</option>
 					))}
 				</select>
-				Мои рейсы
+				</div>
+				<div className='flex flex-col gap-1'>
+					<span className="text-tg-text">Мои рейсы</span>
 				<select name="races" id="races" onChange={(e) => raceHandler(e)}>
 					{races.map((race) => (
 						<option className='text-sm' value={race.invoiceNumber}>#{race.invoiceNumber} {race.invoiceTitle}</option>
@@ -72,6 +75,7 @@ const Header = () => {
 					}
 
 				</select>
+				</div>
 			</div>
 		</header>
 	);

@@ -46,14 +46,14 @@ const Header = () => {
 
 	return (
 		<header className='flex flex-col px-5 py-1 justify-evenly items-center text-sm'>
-			<div className="flex flex-col justify-start gap-1">
+			<div className="flex flex-col justify-self-start gap-0.5">
 				<span>{user?.username ?? 'Username'}</span>
 				<span>ID сервиса</span>
 				<div className="flex items-center justify-between gap-2">
 				<span className="text-center">{role}</span>
 				</div>
 			</div>
-			<div className='flex bg-secondary p-1 rounded gap-2'>
+			<div className='flex bg-secondary p-1 rounded-2xl gap-2'>
 				<Button className="bg-tg-button" onClick={() => setRole(ROLES.executor)}>{ROLES.executor}</Button>
 				<Button className="bg-tg-button" onClick={() => setRole(ROLES.sender)}>{ROLES.sender}</Button>
 			</div>

@@ -5,7 +5,13 @@ module.exports = {
     extend: {
       colors: {
         'secondary': 'var(--tg-theme-secondary-bg-color)',
-        
+        'tg-text': 'var(--tg-theme-button-text-color)',
+        'tg-button': 'var(--tg-theme-button-color)',
+        'refuse': '#E28E8E',
+        'inbox': '#BD8EE2',
+        'success': '#88CD81',
+        'idle': '#FFD074',
+        'active': '#81B6CD',
       },
     },
   },

@@ -3,6 +3,10 @@ import Button from '../Button/Button';
 import {useTelegram} from '../../hooks/useTelegram';
 
 const Header = () => {
+	const enum ROLES {
+		sender = 'Грузоотправитель',
+		executor= 'Грузоперевозчик'
+	}
 	const races = [
 		{invoiceNumber: 233, invoiceTitle: 'Ташкент-махачкала'},
 		{invoiceNumber: 211, invoiceTitle: 'Ташкент-махачкала'},
@@ -21,14 +25,14 @@ const Header = () => {
 	]
 
 	const {onClose, user, tg } = useTelegram()
-	const [role, setRole] = useState('Грузоперевозчик')
+	const [role, setRole] = useState(ROLES.executor)
 	const [race, setRace] = useState();
 	const [organization, setOrganization] = useState();
 	const roleChangeHandler = () => {
-		if (role === 'Грузоперевозчик') {
-			setRole('Заказчик')
+		if (role === ROLES.executor) {
+			setRole(ROLES.sender)
 		} else {
-			setRole( 'Грузоперевозчик')
+			setRole( ROLES.executor)
 		}
 	}
 
@@ -47,14 +51,17 @@ const Header = () => {
 				<span>ID сервиса</span>
 				<div className="flex items-center justify-between gap-2">
 				<span className="text-center">{role}</span>
-					<Button className="bg-[url('/src/assets/refresh.svg')] bg-no-repeat bg-center mr-2" onClick={roleChangeHandler}></Button>
 				</div>
+			</div>
+			<div className='flex bg-secondary p-1 rounded'>
+				<Button className="bg-tg-button" onClick={() => setRole(ROLES.executor)}>{ROLES.executor}</Button>
+				<Button className="bg-tg-button" onClick={() => setRole(ROLES.sender)}>{ROLES.sender}</Button>
 			</div>
 			<div className="flex flex-col gap-1 w-[50%]">
 				Мои организации
 				<select name="organizations" id="organizations" onChange={(e) => organizationChangeHandler(e)}>
 					{organizations.map((org) => (
-						<option className='text-sm' value={org.invoiceNumber}>{org.organization}</option>
+						<option className='text-sm' value={ org.invoiceNumber}>{org.organization}</option>
 					))}
 				</select>
 				Мои рейсы

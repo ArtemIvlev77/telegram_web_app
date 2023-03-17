@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import './App.css';
 import Header from './Components/Header/Header';
 import {useTelegram} from './hooks/useTelegram';
-import Table from './Components/Table/Table';
+import Chart from './Components/Chart/Chart';
 
 
 
@@ -20,7 +20,7 @@ const {tg, user, onToggleButton} = useTelegram()
     <div className="App">
     <Header/>
       {/*<button onClick={onToggleButton}>toggle</button>*/}
-      <Table/>
+      <Chart/>
     </div>
   );
 }

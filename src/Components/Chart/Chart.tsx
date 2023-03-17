@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const Table = () => {
+const Chart = () => {
 	const mockup = [
 		{id: 12,invoiceNumber: '223', organization: 'OOO Ромашка', status: 'incoming', messages: 15, action: '', delete: ''},
 		{id: 13,invoiceNumber: '255', organization: 'OOO OGon', status: 'awaits', messages: 15, action: '', delete: ''},
@@ -61,4 +61,4 @@ const Table = () => {
 	);
 };
 
-export default Table;
+export default Chart;

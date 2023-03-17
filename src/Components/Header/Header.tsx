@@ -46,7 +46,7 @@ const Header = () => {
 
 	return (
 		<header className='bg-secondary h-28 flex px-5 py-1 justify-evenly items-center text-sm'>
-			<div className="flex flex-col gap-1 justify-center w-[50%]">
+			<div className="flex gap-1 justify-center">
 				<span>{user?.username ?? 'Username'}</span>
 				<span>ID сервиса</span>
 				<div className="flex items-center justify-between gap-2">
@@ -57,7 +57,7 @@ const Header = () => {
 				<Button className="bg-tg-button" onClick={() => setRole(ROLES.executor)}>{ROLES.executor}</Button>
 				<Button className="bg-tg-button" onClick={() => setRole(ROLES.sender)}>{ROLES.sender}</Button>
 			</div>
-			<div className="flex flex-col gap-1 w-[50%]">
+			<div className="flex gap-1">
 				Мои организации
 				<select name="organizations" id="organizations" onChange={(e) => organizationChangeHandler(e)}>
 					{organizations.map((org) => (

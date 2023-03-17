@@ -54,8 +54,8 @@ const Header = () => {
 				</div>
 			</div>
 			<div className='flex bg-secondary p-1 rounded-2xl gap-2'>
-				<Button className="bg-tg-button" onClick={() => setRole(ROLES.executor)}>{ROLES.executor}</Button>
-				<Button className="bg-tg-button" onClick={() => setRole(ROLES.sender)}>{ROLES.sender}</Button>
+				<Button onClick={() => setRole(ROLES.executor)}>{ROLES.executor}</Button>
+				<Button onClick={() => setRole(ROLES.sender)}>{ROLES.sender}</Button>
 			</div>
 			<div className="flex  gap-1">
 				<div className='flex flex-col gap-1'>

@@ -47,7 +47,7 @@ const Header = () => {
 	}
 
 	return (
-		<header className="flex flex-col px-5 py-1 text-sm bg-main">
+		<header className="flex flex-col px-5 py-1 text-sm bg-tg-primary-bg">
 			<div className="flex flex-col justify-self-start gap-0.5">
 				<span>{user?.username ?? 'Username'}</span>
 				<span>ID сервиса</span>

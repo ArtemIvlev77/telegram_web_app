@@ -11,7 +11,7 @@ module.exports = {
           'text': 'var(--tg-theme-text-color)',
           'text-button': 'var(--tg-theme-button-text-color)',
           'button': 'var(--tg-theme-button-color)',
-          'secondary': 'var(--tg-theme-secondary-bg-color)',
+          'secondary-bg': 'var(--tg-theme-secondary-bg-color)',
           'primary-bg': 'var(--tg-theme-bg-color)',
         },
         statuses: {

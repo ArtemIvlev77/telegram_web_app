@@ -13,7 +13,7 @@ type ChartCardProps = {
 
 const ChartCard: FC<ChartCardProps> = ({status, raceInfo, messages, companyName}) => {
 	return (
-		<div className="rounded-2xl bg-white p-2">
+		<div className="rounded-2xl bg-tg-secondary-bg p-2">
 			<div className='flex gap-2 justify-between items-center p-2'>
 				<span className={'font-bold text-[#222]'}>{raceInfo}</span>
 				<img src={dots} alt='context-menu'/>

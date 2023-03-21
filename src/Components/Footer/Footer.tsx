@@ -1,7 +1,7 @@
 
 const Footer = () => {
 	return (
-		<div className='fixed bottom-4 bg-tg-secondary-bg left-0 w-full h-6 p-4'>
+		<div className='fixed bottom-8 bg-tg-secondary-bg left-0 w-full h-6 p-4'>
 			<button className='p-8 rounded-2xl bg-tg-button w-full text-tg-text-button'>
 				Создать Рейс
 			</button>

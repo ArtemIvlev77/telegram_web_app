@@ -15,7 +15,7 @@ const Chart = () => {
 		setInvoiceList(invoiceList.filter((el) => el.id !== id))
 	}
 	return (
-		<div className="relative pt-5 p-1 bg-grey-body min-h-full">
+		<div className="relative pt-5 p-1 bg-tg-primary-bg min-h-full">
 			<div className='flex justify-between p-3'>
 				<span className={'text-2xl text-textColors-sub font-semibold'}>Сделки - {invoiceList?.length}</span>
 				<img src={filter} alt='filter'/>

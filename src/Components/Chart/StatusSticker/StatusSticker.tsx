@@ -26,7 +26,7 @@ const StatusSticker: FC<Status<orderStates>> = ({status}) => {
 
 	return (
 		<div className={`rounded-md p-1 text-tg-text font-semibold ` + STATES[status].bgColor}>
-			<span className="text-tg-text">{STATES[status].title}</span>
+			<span className="text-white">{STATES[status].title}</span>
 		</div>
 	);
 };

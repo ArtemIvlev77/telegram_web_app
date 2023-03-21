@@ -31,6 +31,7 @@ module.exports = {
         'grey-sub': '#8C8D8F',
         'grey-body': '#f2f2f7',
         'btn-active': '#50A7EA',
+        'sub-bg': '#999999',
       },
     },
   },

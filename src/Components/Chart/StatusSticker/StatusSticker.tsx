@@ -1,22 +1,30 @@
 import {FC} from 'react';
 
-
-interface StatusStickerProps {
-	status: 'Активная' | 'Ожидание' | 'Успех' | 'Отказ' |  'Не откликнулся'
+type StatusStickerProps = {
+	status: 0 | 1 | 2 | 3 | 4;
 }
+
+
+
 const StatusSticker:FC<StatusStickerProps> = ({status}) => {
-	enum STATES {
-		'Активная',
-		'Ожидание',
-		'Успех',
-		'Отказ',
-		'Не откликнулся',
+	enum orderStates  {
+		active,
+		idle,
+		success,
+		refuse,
+		inbox
+	}
+	const STATES = {
+		[orderStates.active]: {title:'Активная', bgColor: 'bg-statuses-active'},
+		[orderStates.idle]: {title: 'Ожидание', bgColor: 'bg-statuses-idle'},
+		[orderStates.success]: {title: 'Успех', bgColor: 'bg-statuses-success'},
+		[orderStates.refuse]: {title: 'Отказ', bgColor: 'bg-statuses-refuse'},
+		[orderStates.inbox]: {title: 'Не откликнулся', bgColor: 'bg-statuses-inbox'},
 	}
 
-
 	return (
-		<div className={`rounded bg-[${status}]`}>
-			<span className="text-tg-text">{STATES[status]}</span>
+		<div className={`rounded-md p-1 text-white font-bold ` + STATES[status].bgColor}>
+			<span className="text-tg-text">{STATES[status].title}</span>
 		</div>
 	);
 };

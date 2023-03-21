@@ -17,9 +17,8 @@ const {tg, user, onToggleButton} = useTelegram()
   }, []);
 
   return (
-    <div className="App">
-    <Header/>
-      {/*<button onClick={onToggleButton}>toggle</button>*/}
+    <div className="App bg-tg-primary-bg">
+      <Header/>
       <Chart/>
     </div>
   );

@@ -1,10 +1,11 @@
 import React, {FC} from 'react';
-import StatusSticker from '../StatusSticker/StatusSticker';
+import StatusSticker, {orderStates} from '../StatusSticker/StatusSticker';
 import dots from '../../../assets/dots.svg';
 import messageIcon from '../../../assets/messages.svg'
 
-interface ChartCardProps {
-	status: number;
+
+type ChartCardProps = {
+	status: orderStates
 	raceInfo: string;
 	messages: number;
 	companyName: string;
@@ -24,7 +25,7 @@ const ChartCard: FC<ChartCardProps> = ({status, raceInfo, messages, companyName}
 						<img src={messageIcon} alt='msgs'/>
 						{messages}
 					</div>
-					<StatusSticker status={status} />
+					<StatusSticker status={status}/>
 				</div>
 			</div>
 		</div>

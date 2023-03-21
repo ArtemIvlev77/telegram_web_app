@@ -1,19 +1,21 @@
 import {FC} from 'react';
 
-type StatusStickerProps = {
-	status: 0 | 1 | 2 | 3 | 4;
+
+export enum orderStates  {
+	active,
+	idle,
+	success,
+	refuse,
+	inbox
+}
+
+export type Status<Record extends orderStates> = {
+	status: 0 | 1 | 2 | 3 | 4 ;
 }
 
 
 
-const StatusSticker:FC<StatusStickerProps> = ({status}) => {
-	enum orderStates  {
-		active,
-		idle,
-		success,
-		refuse,
-		inbox
-	}
+const StatusSticker: FC<Status<orderStates>> = ({status}) => {
 	const STATES = {
 		[orderStates.active]: {title:'Активная', bgColor: 'bg-statuses-active'},
 		[orderStates.idle]: {title: 'Ожидание', bgColor: 'bg-statuses-idle'},

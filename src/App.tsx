@@ -12,6 +12,7 @@ function App() {
 	const {tg, user, onToggleButton} = useTelegram()
 	useEffect(() => {
 		tg.ready()
+		tg.expand()
 		return () => {
 		};
 	}, []);

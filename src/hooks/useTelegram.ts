@@ -31,11 +31,13 @@ export function useTelegram() {
 	const onClose = () => {
 		tg.close()
 	}
+	const expand = () => tg.expand()
 
 	return {
 		onClose,
 		onToggleButton,
 		tg,
 		user: tg.initDataUnsafe?.user,
+		expand
 	}
 }

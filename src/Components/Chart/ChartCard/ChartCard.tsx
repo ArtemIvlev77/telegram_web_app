@@ -9,11 +9,12 @@ type ChartCardProps = {
 	raceInfo: string;
 	messages: number;
 	companyName: string;
+	routeCallBack: () => void;
 }
 
-const ChartCard: FC<ChartCardProps> = ({status, raceInfo, messages, companyName}) => {
+const ChartCard: FC<ChartCardProps> = ({status, raceInfo, messages, companyName, routeCallBack}) => {
 	return (
-		<div className="rounded-2xl bg-tg-secondary-bg p-2">
+		<div className="rounded-2xl bg-tg-secondary-bg p-2" onClick={routeCallBack}>
 			<div className='flex gap-2 justify-between items-center p-2'>
 				<span className={'font-bold text-tg-text'}>{raceInfo}</span>
 				<img src={dots} alt='context-menu'/>

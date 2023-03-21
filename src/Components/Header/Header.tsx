@@ -49,8 +49,8 @@ const Header = () => {
 	return (
 		<header className="flex flex-col px-5 py-1 text-sm bg-tg-primary-bg">
 			<div className="flex flex-col justify-self-start gap-0.5">
-				<span>{user?.username ?? 'Username'}</span>
-				<span>ID сервиса</span>
+				<span className='text-tg-text'>{user?.username ?? 'Username'}</span>
+				<span className='text-tg-hint'>ID сервиса</span>
 				<div className="flex items-center justify-between gap-2">
 				</div>
 			</div>

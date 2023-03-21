@@ -9,6 +9,7 @@ module.exports = {
       colors: {
         tg: {
           'text': 'var(--tg-theme-text-color)',
+          'hint': 'var(--tg-theme-hint-color)',
           'text-button': 'var(--tg-theme-button-text-color)',
           'button': 'var(--tg-theme-button-color)',
           'secondary-bg': 'var(--tg-theme-secondary-bg-color)',

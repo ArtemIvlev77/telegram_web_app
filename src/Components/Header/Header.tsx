@@ -54,7 +54,7 @@ const Header = () => {
 				<div className="flex items-center justify-between gap-2">
 				</div>
 			</div>
-			<div className="flex justify-center justify-self-center bg-gray-200 p-1 rounded-xl gap-2">
+			<div className="flex justify-center justify-self-center bg-tg-secondary-bg p-1 rounded-xl gap-2">
 				<RadioButton id={ROLES.executor}
 				             name={'role'}
 				             checked={role === ROLES.executor}

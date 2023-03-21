@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import Button from '../Button/Button';
 import {useTelegram} from '../../hooks/useTelegram';
 import RadioButton from '../../shared/UI/RadioButton';
 
@@ -47,7 +46,7 @@ const Header = () => {
 	}
 
 	return (
-		<header className="flex flex-col px-5 py-1 text-sm bg-tg-primary-bg">
+		<header className="flex flex-col px-5 py-1 text-sm bg-tg-primary-bg h-[20%]">
 			<div className="flex flex-col justify-self-start gap-0.5">
 				<span className='text-tg-text'>{user?.username ?? 'Username'}</span>
 				<span className='text-tg-hint'>ID сервиса</span>

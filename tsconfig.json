@@ -5,6 +5,7 @@
       "./node_modules/telegram-webapps-types"
     ],
     "target": "ESNext",
+    "types": ["vite/client"],
     "useDefineForClassFields": true,
     "lib": [
       "DOM",

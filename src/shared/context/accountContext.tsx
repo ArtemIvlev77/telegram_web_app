@@ -34,7 +34,8 @@ const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
 	}
 
 	useEffect(() => {
-		setUserInfo(getUserData(userId))
+		// @ts-ignore
+		return setUserInfo(getUserData(userId));
 	}, [])
 
 	return (

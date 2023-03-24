@@ -1,4 +1,4 @@
-import  {
+import {
 	createContext,
 	FC,
 	PropsWithChildren,
@@ -7,16 +7,19 @@ import  {
 } from 'react';
 import {ROLES} from '../enums/enums';
 
-interface AccountContextType extends Object{
-	roleChangeHandler?: () => void;
-	role?: string;
+interface AccountContextType extends Object {
+	roleChangeHandler: () => void ;
+	role: string;
 }
 
-export const AccountContext = createContext<AccountContextType>({});
+export const AccountContext = createContext<AccountContextType>({
+	roleChangeHandler: () => {} ,
+	role: ''
+});
 export const useAccountContext = () => useContext(AccountContext);
 
-const AccountContextProvider: FC<PropsWithChildren> = ({ children }) => {
-	const [role, setRole] = useState(ROLES.executor)
+const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
+	const [role, setRole] = useState(ROLES.sender)
 	const roleChangeHandler = () => {
 		if (role === ROLES.executor) {
 			setRole(ROLES.sender)
@@ -30,6 +33,6 @@ const AccountContextProvider: FC<PropsWithChildren> = ({ children }) => {
 			{children}
 		</AccountContext.Provider>
 	);
-};
+}
 
 export default AccountContextProvider;

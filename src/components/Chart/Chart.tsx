@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import ChartCard from './ChartCard/ChartCard';
 import filter from '../../assets/filter.svg';
-import {useNavigate} from 'react-router-dom';
+import {ROLES} from '../../shared/enums/enums';
+import {useAccountContext} from '../../shared/context/accountContext';
 
 const Chart = () => {
 	const navigate = useNavigate()
+	const { role } = useAccountContext()
 	const mockup = [
 		{
 			id: 12,
@@ -58,9 +61,9 @@ const Chart = () => {
 		setInvoiceList(invoiceList.filter((el) => el.id !== id))
 	}
 	return (
-		<div className="mb-8 mt-6 pt-5 p-1 bg-tg-primary-bg h-[70%] overflow-scroll">
+		<div className="mb-8 mt-4 pt-5 p-1 bg-tg-primary-bg h-[70%] overflow-scroll">
 			<div className="flex justify-between p-3">
-				<span className={'text-2xl text-textColors-sub font-semibold'}>Сделки - {invoiceList?.length}</span>
+				<span className={'text-2xl text-textColors-sub font-semibold'}>{role === ROLES.executor ? 'Сделки' : 'Заявки'} - {invoiceList?.length}</span>
 				<img src={filter} alt="filter"/>
 			</div>
 			<div className="flex flex-col gap-2">

@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import StatusSticker, {orderStates} from '../StatusSticker/StatusSticker';
 import dots from '../../../assets/dots.svg';
 import messageIcon from '../../../assets/messages.svg'
+import NotificationSticker from '../NotificationSticker/NotificationSticker';
 
 
 type ChartCardProps = {
@@ -22,11 +23,12 @@ const ChartCard: FC<ChartCardProps> = ({status, raceInfo, messages, companyName,
 			<div className='flex justify-between px-2 py-1'>
 				<span className='text-grey-comment'>{companyName}</span>
 				<div className='flex gap-2'>
-					<div className='flex py-0.5 px-2 font-bold gap-1 justify-center items-center rounded-2xl bg-sub-bg'>
+					<div className='flex py-0.5 px-2 font-bold gap-1 justify-center items-center rounded-2xl bg-sub-bg text-tg-text'>
 						<img src={messageIcon} alt='msgs'/>
-						{messages}
+						{messages  ? messages : null}
 					</div>
 					<StatusSticker status={status}/>
+					{/*<NotificationSticker newMessage={true} newResponse={true} />*/}
 				</div>
 			</div>
 		</div>

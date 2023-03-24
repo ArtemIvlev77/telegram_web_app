@@ -1,12 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {useTelegram} from '../../hooks/useTelegram';
 import RadioButton from '../../shared/UI/RadioButton';
+import {useAccountContext} from '../../shared/context/accountContext';
+import {ROLES} from '../../shared/enums/enums';
 
 const Header = () => {
-	const enum ROLES {
-		sender = 'Грузоотправитель',
-		executor = 'Грузоперевозчик'
-	}
 
 	const races = [
 		{invoiceNumber: 233, invoiceTitle: 'Ташкент-махачкала'},
@@ -25,17 +23,9 @@ const Header = () => {
 		{invoiceNumber: 544, organization: 'OOO Ромашка'},
 	]
 
-	const {onClose, user, tg} = useTelegram()
-	const [role, setRole] = useState(ROLES.executor)
+	const {onClose, user, tg, userId} = useTelegram()
 	const [race, setRace] = useState();
 	const [organization, setOrganization] = useState();
-	const roleChangeHandler = () => {
-		if (role === ROLES.executor) {
-			setRole(ROLES.sender)
-		} else {
-			setRole(ROLES.executor)
-		}
-	}
 
 	const raceHandler = (e: any) => {
 		setRace(e.target.value)
@@ -44,26 +34,26 @@ const Header = () => {
 	const organizationChangeHandler = (e: any) => {
 		setOrganization(e.target.value)
 	}
-
+	const {role, roleChangeHandler} = useAccountContext();
 	return (
 		<header className="flex flex-col px-5 py-1 text-sm bg-tg-primary-bg h-[20%]">
 			<div className="flex flex-col justify-self-start gap-0.5">
 				<span className='text-tg-text'>{user?.username ?? 'Username'}</span>
-				<span className='text-tg-hint'>ID сервиса</span>
+				<span className='text-tg-hint'>ID сервиса {userId} </span>
 				<div className="flex items-center justify-between gap-2">
 				</div>
 			</div>
 			<div className="flex justify-center justify-self-center bg-tg-secondary-bg p-1 rounded-xl gap-2">
-				<RadioButton id={ROLES.executor}
-				             name={'role'}
-				             checked={role === ROLES.executor}
-				             changeHandler={() => setRole(ROLES.executor)}
-				             clickHandler={() => setRole(ROLES.executor)}/>
 				<RadioButton id={ROLES.sender}
 				             name={'role'}
 				             checked={role === ROLES.sender}
-				             changeHandler={() => setRole(ROLES.sender)}
-				             clickHandler={() => setRole(ROLES.sender)}/>
+				             changeHandler={roleChangeHandler}
+				             clickHandler={roleChangeHandler}/>
+				<RadioButton id={ROLES.executor}
+				             name={'role'}
+				             checked={role === ROLES.executor}
+				             changeHandler={roleChangeHandler}
+				             clickHandler={roleChangeHandler}/>
 			</div>
 			<div className="flex gap-1 w-full">
 				<div className="w-full flex flex-col">

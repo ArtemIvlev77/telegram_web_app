@@ -10,7 +10,7 @@ export enum orderStates  {
 }
 
 export type Status<Record extends orderStates> = {
-	status: 0 | 1 | 2 | 3 | 4 ;
+	status: 0 | 1 | 2 | 3 | 4;
 }
 
 
@@ -20,7 +20,7 @@ const StatusSticker: FC<Status<orderStates>> = ({status}) => {
 		[orderStates.active]: {title:'Активная', bgColor: 'bg-statuses-active'},
 		[orderStates.idle]: {title: 'Ожидание', bgColor: 'bg-statuses-idle'},
 		[orderStates.success]: {title: 'Успех', bgColor: 'bg-statuses-success'},
-		[orderStates.refuse]: {title: 'Отказ', bgColor: 'bg-statuses-refuse'},
+		[orderStates.refuse]: {title: 'Архив', bgColor: 'bg-statuses-refuse'},
 		[orderStates.inbox]: {title: 'Не откликнулся', bgColor: 'bg-statuses-inbox'},
 	}
 

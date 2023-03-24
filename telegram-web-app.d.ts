@@ -261,7 +261,7 @@ export declare namespace TelegramWebApps {
 		/**
 		 * Optional. The text to be displayed on the button, 0-64 characters.
 		 * Required if type is default or destructive.
-		 * Irrelevant for other types.
+		 * Irrelevant for other types.ts.
 		 */
 		text?: string;
 	}

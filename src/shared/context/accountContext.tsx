@@ -11,13 +11,15 @@ import {UserInfoType} from '../../utils/types';
 import {getUserData} from '../../api';
 
 interface AccountContextType extends Object {
-	roleChangeHandler: () => void ;
+	roleChangeHandler: () => void;
 	role: string;
+	userInfo: UserInfoType | undefined;
 }
 
 export const AccountContext = createContext<AccountContextType>({
 	roleChangeHandler: () => {} ,
-	role: ''
+	role: '',
+	userInfo: undefined,
 });
 export const useAccountContext = () => useContext(AccountContext);
 
@@ -35,11 +37,11 @@ const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
 
 	useEffect(() => {
 		// @ts-ignore
-		return setUserInfo(getUserData(userId));
-	}, [])
+		userId && setUserInfo(getUserData(userId));
+	}, [userId])
 
 	return (
-		<AccountContext.Provider value={{roleChangeHandler, role}}>
+		<AccountContext.Provider value={{roleChangeHandler, role, userInfo}}>
 			{children}
 		</AccountContext.Provider>
 	);

@@ -24,20 +24,20 @@ const Select: FC<SelectProps> = ({data}) => {
 		}
 	}, [open])
 	return (
-		<div className="w-full font-medium h-80">
-			<div ref={ref} className="bg-tg-secondary-bg w-full p-2 items-center justify-between rounded-lg flex "
+		<div className="w-full font-medium min-h-full">
+			<div ref={ref} className="bg-tg-secondary-bg w-full p-2 items-center justify-between rounded-lg flex"
 			     onClick={() => setOpen(true)}>
 				<span className="w-full"> {selected.organization}</span>
 				<img className={'text-black'} src={chevronDown} alt="chevron Down"/>
 			</div>
 			{open &&
-        <ul className="bg-tg-secondary-bg mt-2 overflow-auto max-h-40 rounded">
+        <ul className="bg-tg-secondary-bg mt-2 overflow-auto min-h-full max-h-40 rounded z-10">
 					{
 						data?.map((item: any) => (
 								<li key={item.invoiceNumber} onClick={() => {
 									setSelected(item)
 									setOpen(false)
-								}} className="p-1 cursor-pointer hover:bg-statuses-success">{item.organization}</li>
+								}} className="p-1 cursor-pointer hover:bg-statuses-success z-10">{item.organization}</li>
 							)
 						)
 					}

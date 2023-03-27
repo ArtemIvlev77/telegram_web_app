@@ -10,7 +10,7 @@ interface ButtonProps extends PropsWithChildren {
 const Button: FC<ButtonProps> = ({img, title, clickHandler, type='button', className=''}) => {
 
 	return (
-		<button className={className + 'text-tg-text-button flex items-center gap-2 bg-tg-button'} onClick={() => clickHandler()} type={type}>
+		<button className={ 'text-tg-text-button flex items-center gap-2 bg-tg-secondary-bg' + className} onClick={() => clickHandler()} type={type}>
 			{img && <img src={img} alt="icon"/>}
 			{title}
 		</button>

@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useRef, useState} from 'react';
-import StatusSticker, {orderStates} from '../StatusSticker/StatusSticker';
+import StatusSticker, {orderStates, STATES} from '../StatusSticker/StatusSticker';
 import dots from '../../../assets/dots.svg';
 import messageIcon from '../../../assets/messages.svg'
 import NotificationSticker from '../NotificationSticker/NotificationSticker';
@@ -26,7 +26,7 @@ const ChartCard: FC<ChartCardProps> = ({status, raceInfo, messages, companyName,
 					setModalIsOpen(true)
 				}}>
 					<img className={'w-4 h-4 my-2 ml-auto'} src={dots} alt='context-menu'/>
-					<OrderModal isOpen={modalIsOpen} closeHandler={setModalIsOpen}/>
+					<OrderModal isOpen={modalIsOpen} closeHandler={setModalIsOpen} status={STATES[status].title}/>
 				</div>
 			</div>
 			<div className='flex justify-between px-2 py-1'>

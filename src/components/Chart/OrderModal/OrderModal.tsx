@@ -27,7 +27,7 @@ const OrderModal: FC<OrderModalProps> = ({isOpen, closeHandler, status}) => {
 	}, [isOpen])
 
 	return (
-		<div ref={modalRef} className={`absolute z-10 top-0 right-0 w-[200px] bg-tg-secondary-bg shadow rounded-md ${isOpen ? 'fixed' : 'hidden'}`}>
+		<div ref={modalRef} className={`transition-all absolute z-10 top-0 right-0 w-[200px] bg-tg-secondary-bg shadow rounded-md ${isOpen ? 'fixed' : 'hidden'}`}>
 			<div className='w-full flex items-center justify-items-stretch gap-2 py-4 px-6 hover:bg-sky-100 cursor-pointer text-tg-text'>
 				<img src={chatIcon} alt="chatIcon"/>
 				<span>Перейти в чат</span>

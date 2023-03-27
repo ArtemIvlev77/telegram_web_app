@@ -1,8 +1,9 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useRef, useState} from 'react';
 import StatusSticker, {orderStates} from '../StatusSticker/StatusSticker';
 import dots from '../../../assets/dots.svg';
 import messageIcon from '../../../assets/messages.svg'
 import NotificationSticker from '../NotificationSticker/NotificationSticker';
+import OrderModal from '../OrderModal/OrderModal';
 
 
 type ChartCardProps = {
@@ -14,11 +15,19 @@ type ChartCardProps = {
 }
 
 const ChartCard: FC<ChartCardProps> = ({status, raceInfo, messages, companyName, routeCallBack}) => {
+	const [modalIsOpen, setModalIsOpen] = useState(false);
+
 	return (
-		<div className="rounded-2xl bg-tg-secondary-bg p-2" onClick={routeCallBack}>
-			<div className='flex gap-2 justify-between items-center p-2'>
-				<span className={'font-bold text-tg-text'}>{raceInfo}</span>
-				<img src={dots} alt='context-menu'/>
+		<div className="rounded-2xl bg-tg-secondary-bg p-2">
+			<div className='flex gap-2 justify-between items-center p-2' >
+				<span className={'font-bold text-tg-text'} onClick={routeCallBack}>{raceInfo}</span>
+				<div className="relative flex box-border w-[200px] h-[50px] cursor-pointer" onClick={(e) => {
+					e.stopPropagation()
+					setModalIsOpen(true)
+				}}>
+					<img className={'w-4 h-4 my-2 ml-auto'} src={dots} alt='context-menu'/>
+					<OrderModal isOpen={modalIsOpen} closeHandler={setModalIsOpen}/>
+				</div>
 			</div>
 			<div className='flex justify-between px-2 py-1'>
 				<span className='text-grey-comment'>{companyName}</span>

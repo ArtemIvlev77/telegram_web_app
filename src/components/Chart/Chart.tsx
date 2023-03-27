@@ -64,7 +64,7 @@ const Chart = () => {
 		<div className="mb-8 mt-4 pt-5 p-1 bg-tg-primary-bg h-[70%] overflow-scroll">
 			<div className="flex justify-between p-3">
 				<span className={'text-2xl text-textColors-sub font-semibold'}>{role === ROLES.executor ? 'Сделки' : 'Заявки'} - {invoiceList?.length}</span>
-				<img src={filter} alt="filter"/>
+				{/*<img src={filter} alt="filter"/>*/}
 			</div>
 			<div className="flex flex-col gap-2">
 				{invoiceList.map((invoice) => (
@@ -74,7 +74,7 @@ const Chart = () => {
 						messages={invoice.messages}
 						raceInfo={`#${invoice.invoiceNumber} ${invoice.raceInfo}`}
 						status={invoice.status}
-						routeCallBack={() => navigate('/orders/123')}
+						routeCallBack={() => navigate(`/orders/${invoice.id}`)}
 					/>
 				))}
 			</div>

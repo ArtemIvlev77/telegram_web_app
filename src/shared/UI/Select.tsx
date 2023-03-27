@@ -31,7 +31,7 @@ const Select: FC<SelectProps> = ({data}) => {
 				<img className={'text-black'} src={chevronDown} alt="chevron Down"/>
 			</div>
 			{open &&
-        <ul className="bg-tg-secondary-bg mt-2 overflow-auto max-h-20 rounded">
+        <ul className="bg-tg-secondary-bg mt-2 overflow-auto max-h-40 rounded">
 					{
 						data?.map((item: any) => (
 								<li key={item.invoiceNumber} onClick={() => {

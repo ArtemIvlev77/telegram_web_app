@@ -59,7 +59,7 @@ const Header = () => {
 	}
 	const {role, roleChangeHandler} = useAccountContext();
 	return (
-		<header className="flex flex-col px-5 py-1 text-sm bg-tg-primary-bg h-[20%]">
+		<header className="flex flex-col px-5 py-1 text-sm bg-tg-secondary-bg h-[20%]">
 			{location.pathname === '/' ? (
 				<>
 					<div className="flex flex-col justify-self-start gap-0.5">

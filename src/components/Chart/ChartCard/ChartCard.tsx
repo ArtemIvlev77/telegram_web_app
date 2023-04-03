@@ -18,7 +18,7 @@ const ChartCard: FC<ChartCardProps> = ({status, raceInfo, messages, companyName,
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 
 	return (
-		<div className="rounded-2xl bg-tg-secondary-bg p-2">
+		<div className="rounded-2xl bg-tg-primary-bg p-2">
 			<div className='flex gap-2 justify-between items-center p-2' >
 				<span className={'font-bold text-tg-text'} onClick={routeCallBack}>{raceInfo}</span>
 				<div className="relative flex box-border w-[200px] h-[50px] cursor-pointer" onClick={(e) => {

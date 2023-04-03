@@ -57,14 +57,14 @@ const Header = () => {
 	const organizationChangeHandler = (e: any) => {
 		setOrganization(e.target.value)
 	}
-	const {role, roleChangeHandler} = useAccountContext();
+	const {role, roleChangeHandler, userInfo} = useAccountContext();
 	return (
 		<header className="flex flex-col px-5 py-1 text-sm bg-tg-secondary-bg h-[20%]">
 			{location.pathname === '/' ? (
 				<>
 					<div className="flex flex-col justify-self-start gap-0.5">
-						<span className="text-tg-text">{user?.username ?? 'Username'}</span>
-						<span className="text-tg-hint">id: {userId} </span>
+						<span className="text-tg-text">{userInfo?.userName ?? 'Username'}</span>
+						<span className="text-tg-hint">id: {userInfo?.tgid} </span>
 						<div className="flex items-center justify-between gap-2">
 						</div>
 					</div>

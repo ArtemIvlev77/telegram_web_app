@@ -1,11 +1,16 @@
 export type UserInfoType = {
-	"role": number,
-	"language": number,
-	"name": string,
-	"currentOrganizationId": number,
-	"chatId": number,
-	"tgid": number,
-	"userType": number,
-	"lastOnlineDate": string,
-	"id": number,
+	userName: string,
+	id: number,
+	language: number,
+	role: number,
+	tgid: number,
+	organizations?: OrganizationType[],
 }
+
+
+export type OrganizationType = {
+	id: number,
+	name: string,
+	isActive: boolean,
+}
+

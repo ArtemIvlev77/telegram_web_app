@@ -34,7 +34,8 @@ const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
 	const [currentOrder, setCurrentOrder] = useState('')
 	const [userInfo, setUserInfo] = useState()
 	const [userData, setUserData] = useState()
-	const {userId} = useTelegram();
+	const userId = 326099968;
+
 	const roleChangeHandler = () => {
 		if (role === ROLES.executor) {
 			setRole(ROLES.sender)
@@ -66,16 +67,6 @@ const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
 		return () => {
 		};
 	}, [userInfo]);
-
-	useEffect(() => {
-		userInfo &&	console.log(userInfo)
-
-		return () => {
-		};
-	}, [userInfo]);
-
-
-
 
 	return (
 		<AccountContext.Provider value={{roleChangeHandler, role, userInfo, currentOrder, orderHandler}}>

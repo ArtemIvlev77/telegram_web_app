@@ -28,7 +28,7 @@ const OrderModal: FC<OrderModalProps> = ({isOpen, closeHandler, status}) => {
 
 	return (
 		<div ref={modalRef}
-		     className={`transition-all min-h-[240px] absolute z-10 top-0 right-0 w-[200px] bg-tg-secondary-bg shadow rounded-md ${isOpen ? 'fixed' :'hidden'}`}>
+		     className={`transition-all absolute z-10 top-0 right-0 w-[200px] bg-tg-secondary-bg shadow rounded-md ${isOpen ? 'fixed' :'hidden'}`}>
 			<div
 				className="w-full flex items-center justify-items-stretch gap-3 py-4 px-6 hover:bg-sky-500 cursor-pointer text-tg-text fill-tg-text">
 				<svg width="24" height="24" viewBox="0 0 24 24" fill="current" xmlns="http://www.w3.org/2000/svg">

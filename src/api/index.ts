@@ -10,7 +10,7 @@ export const getUserData = async (userId: number) => {
 		}
 
 	} catch (e) {
-		console.log(e, 'error getUserData')
+		alert(e + 'error getUserData')
 	}
 }
 
@@ -23,7 +23,7 @@ export const fetchOrders = async (organizationId: number) => {
 		}
 
 	} catch (e) {
-		console.log(e, 'error getUserData')
+	alert(e + 'error getUserData')
 	}
 }
 
@@ -36,6 +36,6 @@ export const switchUserRole = async(userId: number, role: number) => {
 		}
 
 	} catch (e) {
-		console.log(e, 'error getUserData')
+		alert(e + 'error getUserData')
 	}
 }

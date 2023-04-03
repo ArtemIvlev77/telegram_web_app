@@ -26,6 +26,7 @@ module.exports = {
           'sub': '#D0D0D0',
           'black': '#111',
           'red': '#DE3A3A',
+          'inactive': '#999999',
           
         },
         'main' : '#F2F2F2',

@@ -64,11 +64,11 @@ const Header = () => {
 				<>
 					<div className="flex flex-col justify-self-start gap-0.5">
 						<span className="text-tg-text">{user?.username ?? 'Username'}</span>
-						<span className="text-tg-hint">ID сервиса {userId} </span>
+						<span className="text-tg-hint">id: {userId} </span>
 						<div className="flex items-center justify-between gap-2">
 						</div>
 					</div>
-					<div className="flex justify-center justify-self-center bg-tg-secondary-bg p-1 rounded-xl gap-2">
+					<div className="flex justify-center justify-self-center bg-tg-primary-bg p-1 rounded-xl gap-2">
 						<RadioButton id={ROLES.sender}
 						             name={'role'}
 						             checked={role === ROLES.sender}

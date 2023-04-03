@@ -18,7 +18,7 @@ function App() {
 	}, []);
 
 	return (
-		<div className="App bg-tg-primary-bg h-screen text-tg-text">
+		<div className="App bg-tg-secondary-bg h-screen text-tg-text">
 			<Header/>
 			<Routes>
 				<Route index element={<Chart/>}/>

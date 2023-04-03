@@ -98,8 +98,8 @@ const Header = () => {
 						<h1 className="text-tg-text text-2xl">{'TITLE'}</h1>
 					</div>
 					<div className="flex justify-between w-full mt-2 p-2">
-						<Button img={flightSearch} clickHandler={() => console.log('asdas')} title={'Подобрать рейс'} className={'font-semibold'}/>
-						<Button img={eye} clickHandler={() => console.log('asdasd')} className={'p-2 bg-black'}/>
+						<Button img={flightSearch} clickHandler={() => console.log('asdas')} title={'Подобрать рейс'} className={'font-semibold bg-tg-button'}/>
+						<Button img={eye} clickHandler={() => console.log('asdasd')} className={'p-2 bg-tg-primary-bg'}/>
 					</div>
 				</>
 			)}

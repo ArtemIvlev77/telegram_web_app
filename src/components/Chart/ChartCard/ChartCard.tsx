@@ -5,6 +5,7 @@ import messageIcon from '../../../assets/messages.svg'
 import NotificationSticker from '../NotificationSticker/NotificationSticker';
 import OrderModal from '../OrderModal/OrderModal';
 import {useLocation} from 'react-router-dom';
+import {useAccountContext} from '../../../shared/context/accountContext';
 
 
 type ChartCardProps = {

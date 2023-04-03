@@ -14,7 +14,7 @@ export const getUserData = async (userId: number) => {
 	}
 }
 
-export const fetchOrders = async (organizationId: number) => {
+export const getOrganizationTrips = async (organizationId: number) => {
 	try {
 		const response = await axios.get(`${BASE_URL}/GetOrganizationTrips?orgId=${organizationId}`)
 
@@ -29,7 +29,7 @@ export const fetchOrders = async (organizationId: number) => {
 
 export const switchUserRole = async(userId: number, role: number) => {
 	try {
-		const response = await axios.get(`${BASE_URL}/ChangeRole?tgid=${userId}&role=${role}`)
+		const response = await axios.post(`${BASE_URL}/ChangeRole?tgid=${userId}&role=${role}`)
 
 		if(response.status === 200) {
 			return {payload: response.data}
@@ -39,3 +39,45 @@ export const switchUserRole = async(userId: number, role: number) => {
 		alert(e + 'error getUserData')
 	}
 }
+
+export const changeUserOrganization = async (userId:number, organizationId: number) => {
+	try {
+		const response = await axios.post(`${BASE_URL}/ChangeOrganization?tgid=${userId}&orgid=${organizationId}`)
+
+		if(response.status === 200) {
+			return {payload: response.data}
+		}
+
+	} catch (e) {
+		alert(e + 'error changeUserOrganization')
+	}
+}
+
+export const openDeal = async (userId: number, dealId: number) => {
+	try {
+		const response = await axios.post(`${BASE_URL}/OpenDeal?tgid=${userId}&dealId=${dealId}`)
+
+		if(response.status === 200) {
+			return {payload: response.data}
+		}
+
+	} catch (e) {
+		alert(e + 'error openDeal')
+	}
+}
+
+export const getTripDeals = async (tripId: number) => {
+	try {
+		const response = await axios.post(`${BASE_URL}/GetTripDeals?tripId=${tripId}`)
+
+		if(response.status === 200) {
+			return {payload: response.data}
+		}
+
+	} catch (e) {
+		alert(e + 'error getTripDeals')
+	}
+
+}
+
+

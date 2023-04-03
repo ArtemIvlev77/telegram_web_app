@@ -7,8 +7,8 @@ import {
 } from 'react';
 import {ROLES} from '../enums/enums';
 import {useTelegram} from '../../hooks/useTelegram';
-import {UserInfoType} from '../../utils/types';
-import {fetchOrders, getUserData, switchUserRole} from '../../api';
+import {OrganizationType, UserInfoType} from '../../utils/types';
+import {getOrganizationTrips, getUserData, switchUserRole} from '../../api';
 
 interface AccountContextType extends Object {
 	roleChangeHandler: () => void;
@@ -16,24 +16,28 @@ interface AccountContextType extends Object {
 	currentOrder: any;
 	role: string;
 	userInfo: UserInfoType | undefined;
-
+	orders: any[];
+	organizations: OrganizationType[]
 }
-
 export const AccountContext = createContext<AccountContextType>({
 	roleChangeHandler: () => {} ,
 	orderHandler: () => {},
 	currentOrder: {},
 	role: '',
 	userInfo: undefined,
+	orders: [],
+	organizations: [],
 });
 export const useAccountContext = () => useContext(AccountContext);
 
 const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
 	let { userId } = useTelegram()
 	const [role, setRole] = useState(ROLES.sender)
+	const [organizations, setOrganizations] = useState([])
+	const [currentOrganization, setCurrentOrganization] = useState()
+	const [orders, setOrders] = useState([])
 	const [currentOrder, setCurrentOrder] = useState('')
 	const [userInfo, setUserInfo] = useState()
-	const [userData, setUserData] = useState()
 	// const userId = 326099968;
 
 	const roleChangeHandler = () => {
@@ -46,6 +50,10 @@ const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
 		}
 	}
 
+	const changeOrgHandler = () => {
+
+	}
+
 	const orderHandler = (order: any) => {
 		setCurrentOrder(order)
 	}
@@ -55,21 +63,15 @@ const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
 		// @ts-ignore
 		userId && getUserData(userId).then(res => {
 			setUserInfo(res?.payload)
-			fetchOrders(res?.payload.currentOrganizationId).then(res => {
-				setUserData(res?.payload)
+			setOrganizations(res?.payload.organizations)
+			getOrganizationTrips(res?.payload.organizations[0]?.id).then(res => {
+				setOrders(res?.payload)
 			})
 		})
 	}, [userId])
 
-	useEffect(() => {
-		// @ts-ignore
-		userInfo && setUserData(fetchOrders(userInfo?.currentOrganizationId).payload)
-		return () => {
-		};
-	}, [userInfo]);
-
 	return (
-		<AccountContext.Provider value={{roleChangeHandler, role, userInfo, currentOrder, orderHandler}}>
+		<AccountContext.Provider value={{roleChangeHandler, role, userInfo, currentOrder, orderHandler, orders, organizations}}>
 			{children}
 		</AccountContext.Provider>
 	);

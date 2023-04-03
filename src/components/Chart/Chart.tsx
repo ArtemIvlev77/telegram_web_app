@@ -7,74 +7,31 @@ import {useAccountContext} from '../../shared/context/accountContext';
 
 const Chart = () => {
 	const navigate = useNavigate()
-	const { role } = useAccountContext()
-	const mockup = [
-		{
-			id: 12,
-			invoiceNumber: '223',
-			organization: 'OOO Ромашка',
-			raceInfo: 'Алмалык, Узбекистан - Избербаш, Респ. Дагестан, Россия',
-			status: 0,
-			messages: 20,
-			action: '',
-			delete: ''
-		},
-		{
-			id: 13,
-			invoiceNumber: '255',
-			organization: 'OOO OGon',
-			raceInfo: 'Алмалык, Узбекистан - Избербаш, Респ. Дагестан, Россия',
-			status: 1,
-			messages: 20,
-			delete: ''
-		},
-		{
-			id: 14,
-			invoiceNumber: '223',
-			organization: 'OOO TOP',
-			raceInfo: 'Алмалык, Узбекистан - Избербаш, Респ. Дагестан, Россия',
-			status: 2,
-			messages: 20,
-			delete: ''
-		},
-		{
-			id: 15,
-			invoiceNumber: '6556',
-			organization: 'OOO SAMLOG',
-			raceInfo: 'Алмалык, Узбекистан - Избербаш, Респ. Дагестан, Россия',
-			status: 3,
-			messages: 20,
-			delete: ''
-		},
-		{
-			id: 16,
-			invoiceNumber: '544',
-			organization: 'OOO Ромашка',
-			raceInfo: 'Алмалык, Узбекистан - Избербаш, Респ. Дагестан, Россия',
-			status: 4,
-			messages: 20,
-			delete: ''
-		},
-	]
-	const [invoiceList, setInvoiceList] = useState(mockup);
-	const deleteHandler = (id: number) => {
-		setInvoiceList(invoiceList.filter((el) => el.id !== id))
-	}
+	const { role, orders } = useAccountContext()
+
+	const {orderHandler} = useAccountContext()
+
+	// const deleteHandler = (id: number) => {
+	// 	setInvoiceList(invoiceList.filter((el) => el.id !== id))
+	// }
 	return (
 		<div className="mb-8 mt-4 pt-5 p-1 bg-tg-secondary-bg h-[70%] overflow-scroll">
 			<div className="flex justify-between p-3">
-				<span className={'text-2xl text-textColors-sub font-semibold'}>{role === ROLES.executor ? 'Сделки' : 'Заявки'} - {invoiceList?.length}</span>
+				<span className={'text-2xl text-textColors-sub font-semibold'}>{role === ROLES.executor ? 'Сделки' : 'Заявки'} - {orders?.length}</span>
 				{/*<img src={filter} alt="filter"/>*/}
 			</div>
 			<div className="flex flex-col gap-2">
-				{invoiceList.map((invoice) => (
+				{orders.map((invoice) => (
 					<ChartCard
 						key={invoice.id}
 						companyName={invoice.organization}
 						messages={invoice.messages}
-						raceInfo={`#${invoice.invoiceNumber} ${invoice.raceInfo}`}
+						raceInfo={`#${invoice.id} ${invoice.from} - ${invoice.to}`}
 						status={invoice.status}
-						routeCallBack={() => navigate(`/orders/${invoice.id}`)}
+						routeCallBack={() => {
+							orderHandler(invoice.id)
+							navigate(`/orders/${invoice.id}`)
+						}}
 					/>
 				))}
 			</div>

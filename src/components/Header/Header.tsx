@@ -21,30 +21,6 @@ const Header = () => {
 		{invoiceNumber: 733, invoiceTitle: 'Ташкент-махачкала'},
 	]
 
-	const organizations = [
-		{invoiceNumber: 2243, organization: 'OOO Ромашка'},
-		{invoiceNumber: 2551, organization: 'OOO OGon'},
-		{invoiceNumber: 2232, organization: 'OOO TOP'},
-		{invoiceNumber: 65563, organization: 'OOO SAMLOG'},
-		{invoiceNumber: 5444, organization: 'OOO Ромашка'},
-		{invoiceNumber: 22435, organization: 'OOO Ромашка'},
-		{invoiceNumber: 2565, organization: 'OOO OGon'},
-		{invoiceNumber: 2283, organization: 'OOO TOP'},
-		{invoiceNumber: 65756, organization: 'OOO SAMLOG'},
-		{invoiceNumber: 544, organization: 'OOO Ромашка'},
-		{invoiceNumber: 22543, organization: 'OOO Ромашка'},
-		{invoiceNumber: 2535, organization: 'OOO OGon'},
-		{invoiceNumber: 2223, organization: 'OOO TOP'},
-		{invoiceNumber: 65456, organization: 'OOO SAMLOG'},
-		{invoiceNumber: 5464, organization: 'OOO Ромашка'},
-		{invoiceNumber: 22743, organization: 'OOO Ромашка'},
-		{invoiceNumber: 2585, organization: 'OOO OGon'},
-		{invoiceNumber: 2423, organization: 'OOO TOP'},
-		{invoiceNumber: 65256, organization: 'OOO SAMLOG'},
-		{invoiceNumber: 5443, organization: 'OOO Ромашка'},
-	]
-
-
 	const location = useLocation();
 	const {onClose, user, tg, userId} = useTelegram()
 	const [race, setRace] = useState();
@@ -54,17 +30,14 @@ const Header = () => {
 		setRace(e.target.value)
 	}
 
-	const organizationChangeHandler = (e: any) => {
-		setOrganization(e.target.value)
-	}
-	const {role, roleChangeHandler, userInfo} = useAccountContext();
+	const {role, roleChangeHandler, userInfo, currentOrder, organizations} = useAccountContext();
 	return (
 		<header className="flex flex-col px-5 py-1 text-sm bg-tg-secondary-bg h-[20%]">
 			{location.pathname === '/' ? (
 				<>
 					<div className="flex flex-col justify-self-start gap-0.5">
 						<span className="text-tg-text">{userInfo?.userName ?? 'Username'}</span>
-						<span className="text-tg-hint">id: {userInfo?.tgid} </span>
+						<span className="text-tg-hint">id: {userInfo?.tgid ?? '---'} </span>
 						<div className="flex items-center justify-between gap-2">
 						</div>
 					</div>
@@ -85,7 +58,7 @@ const Header = () => {
 							<div className="flex justify-center">
 								<div className="mb-3 xl:w-96 w-full">
 									<span className="text-tg-text">Мои организации</span>
-									<Select data={role === ROLES.sender ? organizations : races}/>
+									<Select data={organizations}/>
 								</div>
 							</div>
 						</div>
@@ -95,7 +68,7 @@ const Header = () => {
 				<>
 					<div className="flex items-center justify-start gap-2 p-2">
 						<img src={list} alt="list"/>
-						<h1 className="text-tg-text text-2xl">{'TITLE'}</h1>
+						<h1 className="text-tg-text text-2xl">{currentOrder}</h1>
 					</div>
 					<div className="flex justify-between w-full mt-2 p-2">
 						<Button img={flightSearch} clickHandler={() => console.log('asdas')} title={'Подобрать рейс'} className={'font-semibold bg-tg-button'}/>

@@ -52,13 +52,13 @@ const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
 	useEffect(() => {
 		// userId = 326099968
 		// @ts-ignore
-		getUserData(userId).then(res => {
+		userId && getUserData(userId).then(res => {
 			setUserInfo(res?.payload)
 			fetchOrders(res?.payload.currentOrganizationId).then(res => {
 				setUserData(res?.payload)
 			})
 		})
-	}, [])
+	}, [userId])
 
 	useEffect(() => {
 		// @ts-ignore

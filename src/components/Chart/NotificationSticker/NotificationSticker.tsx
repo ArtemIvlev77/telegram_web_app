@@ -9,7 +9,7 @@ interface NotificationStickerProps {
 
 const NotificationSticker: FC<NotificationStickerProps> = ({newResponse, newMessage}) => {
 	return (
-		<div className="flex justify-around gap-4">
+		<div className="flex justify-around gap-4 text-xs text-tg-text">
 			{newMessage &&
         <div className="bg-statuses-success flex justify-center items-center py-1 px-2 rounded-lg"><img src={newMessageIcon} alt=""/> Новое
           Сообщение</div>}

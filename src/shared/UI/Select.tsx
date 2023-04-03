@@ -37,7 +37,7 @@ const Select: FC<SelectProps> = ({data}) => {
 								<li key={item.invoiceNumber} onClick={() => {
 									setSelected(item)
 									setOpen(false)
-								}} className="p-1 cursor-pointer z-10">{item.organization}</li>
+								}} className="p-1 cursor-pointer z-10 hover:bg-blue-300 hover:bg-opacity-10">{item.organization}</li>
 							)
 						)
 					}

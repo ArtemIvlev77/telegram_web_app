@@ -31,18 +31,21 @@ const ChartCard: FC<ChartCardProps> = ({status, raceInfo, messages, companyName,
 					<OrderModal isOpen={modalIsOpen} closeHandler={setModalIsOpen} status={STATES[status].title}/>
 				</div>
 			</div>
-			<div className="flex justify-between px-2 py-1">
-				<span className="text-grey-comment">{companyName}</span>
-				<div className="flex gap-2">
-					{location === '/'
-						? <NotificationSticker newMessage={true} newResponse={true}/>
-						: <div className="flex py-0.5 px-2 font-bold gap-1 justify-center items-center rounded-2xl bg-sub-bg text-tg-text">
+
+			{location === '/'
+				? <NotificationSticker newMessage={true} newResponse={true}/>
+				:
+				<div className="flex justify-between px-2 py-1">
+					<span className="text-grey-comment">{companyName}</span>
+					<div className="flex gap-2">
+						<div className="flex py-0.5 px-2 font-bold gap-1 justify-center items-center rounded-2xl bg-sub-bg text-tg-text">
 							<img src={messageIcon} alt="msgs"/>
 							{messages ? messages :null}
 							<StatusSticker status={status}/>
-						</div>  }
+						</div>
+					</div>
 				</div>
-			</div>
+			}
 		</div>
 	);
 };

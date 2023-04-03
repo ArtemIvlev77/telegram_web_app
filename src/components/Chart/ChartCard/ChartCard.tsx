@@ -28,7 +28,7 @@ const ChartCard: FC<ChartCardProps> = ({status, raceInfo, messages, companyName,
 					setModalIsOpen(true)
 				}}>
 					<img className={'w-4 h-4 my-2 ml-auto'} src={dots} alt="context-menu"/>
-					{ location === '/' && <OrderModal isOpen={modalIsOpen} closeHandler={setModalIsOpen} status={STATES[status].title}/>}
+					{location === '/' && <OrderModal isOpen={modalIsOpen} closeHandler={setModalIsOpen} status={STATES[status].title}/>}
 				</div>
 			</div>
 
@@ -42,8 +42,8 @@ const ChartCard: FC<ChartCardProps> = ({status, raceInfo, messages, companyName,
 						<div className="flex py-0.5 px-2 font-bold gap-1 justify-center items-center rounded-2xl bg-sub-bg text-tg-text">
 							<img src={messageIcon} alt="msgs"/>
 							{messages ? messages :null}
-							<StatusSticker status={status}/>
 						</div>
+						<StatusSticker status={status}/>
 					</div>
 				</div>
 			}

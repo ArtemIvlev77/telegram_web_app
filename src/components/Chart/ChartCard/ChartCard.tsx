@@ -33,11 +33,12 @@ const ChartCard: FC<ChartCardProps> = ({status, raceInfo, messages, companyName,
 			</div>
 
 			{location === '/'
-				? <NotificationSticker newMessage={true} newResponse={true}/>
+				?
+				<div className="flex justify-end"><NotificationSticker newMessage={true} newResponse={true}/></div>
 				:
 				<div className="flex justify-between px-2 py-1">
 					<span className="text-grey-comment">{companyName}</span>
-					<div className="flex gap-2">
+					<div className="flex gap-2">  
 						<div className="flex py-0.5 px-2 font-bold gap-1 justify-center items-center rounded-2xl bg-sub-bg text-tg-text">
 							<img src={messageIcon} alt="msgs"/>
 							{messages ? messages :null}

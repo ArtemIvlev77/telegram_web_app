@@ -8,7 +8,7 @@ import {
 import {ROLES} from '../enums/enums';
 import {useTelegram} from '../../hooks/useTelegram';
 import {UserInfoType} from '../../utils/types';
-import {fetchOrders, getUserData} from '../../api';
+import {fetchOrders, getUserData, switchUserRole} from '../../api';
 
 interface AccountContextType extends Object {
 	roleChangeHandler: () => void;
@@ -34,12 +34,14 @@ const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
 	const [currentOrder, setCurrentOrder] = useState('')
 	const [userInfo, setUserInfo] = useState()
 	const [userData, setUserData] = useState()
-	const userId = 326099968
+	const {userId} = useTelegram();
 	const roleChangeHandler = () => {
 		if (role === ROLES.executor) {
 			setRole(ROLES.sender)
+			switchUserRole(userId, 1)
 		} else {
 			setRole(ROLES.executor)
+			switchUserRole(userId, 2)
 		}
 	}
 

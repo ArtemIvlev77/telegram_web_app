@@ -8,7 +8,7 @@ import {useLocation} from 'react-router-dom';
 
 
 type ChartCardProps = {
-	status: orderStates
+	status: orderStates;
 	raceInfo: string;
 	messages: number;
 	companyName: string;

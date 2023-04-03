@@ -27,8 +27,12 @@ const ChartCard: FC<ChartCardProps> = ({status, raceInfo, messages, companyName,
 					e.stopPropagation()
 					setModalIsOpen(true)
 				}}>
+					{location === '/' &&
+						<>
 					<img className={'w-4 h-4 my-2 ml-auto'} src={dots} alt="context-menu"/>
-					{location === '/' && <OrderModal isOpen={modalIsOpen} closeHandler={setModalIsOpen} status={STATES[status].title}/>}
+					 <OrderModal isOpen={modalIsOpen} closeHandler={setModalIsOpen} status={STATES[status].title}/>
+            </>
+					}
 				</div>
 			</div>
 

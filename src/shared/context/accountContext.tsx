@@ -35,8 +35,8 @@ export const AccountContext = createContext<AccountContextType>({
 export const useAccountContext = () => useContext(AccountContext);
 
 const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
-	// let { userId } = useTelegram()
-	let userId = 326099968
+	let { userId } = useTelegram()
+	// let userId = 326099968
 
 	const [role, setRole] = useState(ROLES.sender)
 	const [organizations, setOrganizations] = useState([])
@@ -53,6 +53,8 @@ const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
 				switchUserRole(userId, 1)
 					.then(() => getOrganizationTrips(currentOrganization?.id, 1))
 					.then((res) => setOrders(res?.payload))
+					.then(() => getUserData(userId).then((res) => setUserInfo(res?.payload)))
+					.catch((e) => alert(e))
 			}
 		} else {
 			setRole(ROLES.executor)
@@ -60,6 +62,8 @@ const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
 				switchUserRole(userId, 2)
 					.then(() => getOrganizationTrips(currentOrganization?.id, 2))
 					.then((res) => setOrders(res?.payload))
+					.then(() => getUserData(userId).then((res) => setUserInfo(res?.payload)))
+					.catch((e) => alert(e))
 			}
 		}
 	}

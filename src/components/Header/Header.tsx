@@ -33,7 +33,7 @@ const Header = () => {
 
 	const {role, roleChangeHandler, userInfo, currentOrder, organizations} = useAccountContext();
 	return (
-		<header className="flex flex-col px-5 py-1 text-sm bg-tg-secondary-bg h-[20%]">
+		<header className="flex flex-col px-5 py-1 text-sm bg-tg-secondary-bg h-[20%] z-10">
 			{location.pathname === '/' ? (
 				<>
 					<div className="flex flex-col justify-self-start gap-0.5">
@@ -54,7 +54,7 @@ const Header = () => {
 						             changeHandler={roleChangeHandler}
 						             clickHandler={roleChangeHandler}/>
 					</div>
-					<div className="flex gap-1 w-full">
+					<div className="flex gap-1 w-full z-10">
 						<div className="w-full flex flex-col">
 							<div className="flex justify-center">
 								<div className="mb-3 xl:w-96 w-full">

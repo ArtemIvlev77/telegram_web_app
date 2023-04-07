@@ -33,21 +33,21 @@ const Select: FC<SelectProps> = ({data, userId}) => {
 
 
 	return (
-		<div className="w-full font-medium min-h-full">
+		<div className="w-full font-medium min-h-full z-10">
 			<div ref={ref} className="bg-tg-primary-bg w-full p-2 items-center justify-between rounded-lg flex"
 			     onClick={() => setOpen(true)}>
 				<span className="w-full"> {selected?.name}</span>
 				<img className={'text-black'} src={chevronDown} alt="chevron Down"/>
 			</div>
 			{open &&
-        <ul className="bg-tg-primary-bg mt-2 overflow-auto min-h-full max-h-40 rounded z-100">
+        <ul className="bg-tg-primary-bg mt-2 overflow-auto min-h-full max-h-40 rounded z-10">
 					{
 						data?.map((item: any) => (
 								<li key={item.id} onClick={async() => {
 									setSelected(item)
 									setOpen(false)
 									if (userId) {await changeUserOrganization(userId, item.id)}
-								}} className="p-1 cursor-pointer z-100 bg-tg-primary-bg hover:bg-blue-300 hover:bg-opacity-10">{item.name}</li>
+								}} className="p-1 cursor-pointer z-10 bg-tg-primary-bg hover:bg-blue-300 hover:bg-opacity-10">{item.name}</li>
 							)
 						)
 					}

@@ -14,9 +14,9 @@ export const getUserData = async (userId: number) => {
 	}
 }
 
-export const getOrganizationTrips = async (organizationId: number) => {
+export const getOrganizationTrips = async (organizationId: number, userRole: number) => {
 	try {
-		const response = await axios.get(`${BASE_URL}/GetOrganizationTrips?orgId=${organizationId}`)
+		const response = await axios.get(`${BASE_URL}/GetOrganizationTrips?orgId=${organizationId}&userRole=${userRole}`)
 
 		if(response.status === 200) {
 			return {payload: response.data}

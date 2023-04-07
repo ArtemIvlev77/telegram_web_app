@@ -11,16 +11,7 @@ import flightSearch from '../../assets/flightSearch.svg'
 import eye from '../../assets/iconEye.svg';
 
 const Header = () => {
-	const location = useLocation();
 	const {onClose,  tg} = useTelegram()
-	const [race, setRace] = useState();
-	const [organization, setOrganization] = useState();
-	
-
-	const raceHandler = (e: any) => {
-		setRace(e.target.value)
-	}
-
 	const {
 		role,
 		roleChangeHandler,
@@ -30,6 +21,16 @@ const Header = () => {
 		currentOrganization,
 		changeOrganizationHandler
 	} = useAccountContext();
+	const location = useLocation();
+
+	const [race, setRace] = useState();
+
+
+	const raceHandler = (e: any) => {
+		setRace(e.target.value)
+	}
+
+
 
 	return (
 		<header className="flex flex-col px-5 py-1 text-sm bg-tg-secondary-bg h-[20%] z-10">
@@ -58,8 +59,7 @@ const Header = () => {
 							<div className="flex justify-center">
 								<div className="mb-3 xl:w-96 w-full">
 									<span className="text-tg-text">Мои организации</span>
-									<Select data={organizations}
-											userId={userInfo?.tgid}
+									<Select organizations={organizations}
 											selected={currentOrganization}
 											selectHandler={changeOrganizationHandler}/>
 								</div>

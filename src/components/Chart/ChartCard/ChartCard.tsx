@@ -32,7 +32,7 @@ const ChartCard: FC<ChartCardProps> = ({status, header, hasMessages, hasResponse
 					{location === '/' &&
 						<>
 					<img className={'w-4 h-4 my-2 ml-auto'} src={dots} alt="context-menu"/>
-					 <OrderModal isOpen={modalIsOpen} closeHandler={setModalIsOpen} status={STATES[status].title}/>
+					 <OrderModal isOpen={modalIsOpen} closeHandler={setModalIsOpen} status={STATES[status]?.title}/>
             </>
 					}
 				</div>

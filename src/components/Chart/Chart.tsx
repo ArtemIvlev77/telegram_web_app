@@ -25,8 +25,8 @@ const Chart = () => {
 				{orders.map((trip) => (
 					<ChartCard
 						key={trip.id}
-						hasResponses={trip.organization}
-						hasMessages={trip.messages}
+						hasResponses={true}
+						hasMessages={true}
 						header={trip.header}
 						status={trip.status}
 						isHidden={trip.isHidden}

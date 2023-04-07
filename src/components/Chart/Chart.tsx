@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import ChartCard from './ChartCard/ChartCard';
-import filter from '../../assets/filter.svg';
+
 import {ROLES} from '../../shared/enums/enums';
 import {useAccountContext} from '../../shared/context/accountContext';
 

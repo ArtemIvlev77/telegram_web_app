@@ -63,17 +63,23 @@ const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
 	}
 
 	useEffect(() => {
+		currentOrganization && getOrganizationTrips(currentOrganization.id)
+			.then((res) => setOrders(res?.payload))	}, [currentOrganization]);
+
+
+	useEffect(() => {
 		userId = 326099968
 		// @ts-ignore
 		userId && getUserData(userId).then(res => {
 			setUserInfo(res?.payload)
 			setOrganizations(res?.payload.organizations)
-			setCurrentOrganization(res?.payload.organizations[0])
+			setCurrentOrganization(res?.payload.organizations.filter((org: OrganizationType) => org.isActive))
 			getOrganizationTrips(res?.payload.organizations[0]?.id).then(res => {
 				setOrders(res?.payload)
 			})
 		})
 	}, [userId])
+
 
 
 	return (

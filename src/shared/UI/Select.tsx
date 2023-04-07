@@ -9,14 +9,13 @@ type SelectProps = {
 	selected: any;
 	selectHandler: any;
 }
-const Select: FC<SelectProps> = ({data, userId}) => {
-	const [selected, setSelected] = useState(data[0]);
+const Select: FC<SelectProps> = ({data, userId, selectHandler, selected}) => {
 	const [open, setOpen] = useState(false);
 	const ref = useRef<HTMLDivElement | null>(null);
 	const {organizations, userInfo} = useAccountContext();
 
 	useEffect(() => {
-		organizations && setSelected(organizations[0]);
+		organizations && selectHandler(organizations[0]);
 	}, [organizations]);
 
 	const outsideClickHandler = (e: any) => {
@@ -46,7 +45,7 @@ const Select: FC<SelectProps> = ({data, userId}) => {
 					{
 						data?.map((item: any) => (
 								<li key={item.id} onClick={async() => {
-									setSelected(item)
+									selectHandler(item)
 									setOpen(false)
 									if (userId) {await changeUserOrganization(userId, item.id)}
 								}} className="p-1 cursor-pointer z-10 bg-tg-primary-bg hover:bg-blue-300 hover:bg-opacity-10">{item.name}</li>

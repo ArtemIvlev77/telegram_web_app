@@ -8,7 +8,7 @@ const Footer = () => {
 	const {role} = useAccountContext()
 
 	return (
-		<footer className='fixed bottom-0 bg-tg-secondary-bg left-0 w-full h-[15%] p-2'>
+		<footer className='fixed bottom-0 bg-tg-secondary-bg left-0 w-full h-[10%] p-2'>
 			{role === ROLES.sender && (
 				<button className='p-2 rounded-2xl bg-tg-button w-full text-tg-text-button' onClick={() => navigate('/')}>
 					{location.pathname !== '/'

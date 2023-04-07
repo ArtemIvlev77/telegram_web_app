@@ -1,15 +1,17 @@
 import chevronDown from '../../assets/chevronDown.svg'
-import {FC, HTMLAttributes, useEffect, useRef, useState} from 'react';
+import {FC, useEffect, useRef, useState} from 'react';
 import {useAccountContext} from '../context/accountContext';
+import { changeUserOrganization } from '../../api';
 
 type SelectProps = {
 	data: any;
+	userId?: number;
 }
-const Select: FC<SelectProps> = ({data}) => {
+const Select: FC<SelectProps> = ({data, userId}) => {
 	const [selected, setSelected] = useState(data[0]);
 	const [open, setOpen] = useState(false);
 	const ref = useRef<HTMLDivElement | null>(null);
-	const {organizations} = useAccountContext();
+	const {organizations, userInfo} = useAccountContext();
 
 	useEffect(() => {
 		organizations && setSelected(organizations[0]);
@@ -28,6 +30,8 @@ const Select: FC<SelectProps> = ({data}) => {
 		window.removeEventListener('click', outsideClickHandler)
 		}
 	}, [open])
+
+
 	return (
 		<div className="w-full font-medium min-h-full">
 			<div ref={ref} className="bg-tg-primary-bg w-full p-2 items-center justify-between rounded-lg flex"
@@ -36,13 +40,14 @@ const Select: FC<SelectProps> = ({data}) => {
 				<img className={'text-black'} src={chevronDown} alt="chevron Down"/>
 			</div>
 			{open &&
-        <ul className="bg-tg-primary-bg mt-2 overflow-auto min-h-full max-h-40 rounded z-10">
+        <ul className="bg-tg-primary-bg mt-2 overflow-auto min-h-full max-h-40 rounded z-100">
 					{
 						data?.map((item: any) => (
-								<li key={item.id} onClick={() => {
+								<li key={item.id} onClick={async() => {
 									setSelected(item)
 									setOpen(false)
-								}} className="p-1 cursor-pointer z-10 hover:bg-blue-300 hover:bg-opacity-10">{item.name}</li>
+									if (userId) {await changeUserOrganization(userId, item.id)}
+								}} className="p-1 cursor-pointer z-100 bg-tg-primary-bg hover:bg-blue-300 hover:bg-opacity-10">{item.name}</li>
 							)
 						)
 					}

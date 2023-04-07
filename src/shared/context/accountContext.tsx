@@ -59,19 +59,21 @@ const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
 	}
 
 	useEffect(() => {
-		// userId = 326099968
+		userId = 326099968
 		// @ts-ignore
 		userId && getUserData(userId).then(res => {
 			setUserInfo(res?.payload)
 			setOrganizations(res?.payload.organizations)
+			setCurrentOrganization(res?.payload.organizations[0])
 			getOrganizationTrips(res?.payload.organizations[0]?.id).then(res => {
 				setOrders(res?.payload)
 			})
 		})
 	}, [userId])
 
+
 	return (
-		<AccountContext.Provider value={{roleChangeHandler, role, userInfo, currentOrder, orderHandler, orders, organizations}}>
+		<AccountContext.Provider value={{roleChangeHandler, role, userInfo, currentOrder, orderHandler, orders, organizations, currentOrganization, changeOrgHandler}}>
 			{children}
 		</AccountContext.Provider>
 	);

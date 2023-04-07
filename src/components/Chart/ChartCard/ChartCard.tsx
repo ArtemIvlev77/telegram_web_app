@@ -40,7 +40,7 @@ const ChartCard: FC<ChartCardProps> = ({status, header, hasMessages, hasResponse
 
 			{location === '/'
 				?
-				<div className="flex justify-end"><NotificationSticker hasMessages={hasMessages} hasResponses={hasResponses}/></div>
+				<div className="flex justify-end"><NotificationSticker isHidden={isHidden} hasMessages={hasMessages} hasResponses={hasResponses}/></div>
 				:
 				<div className="flex justify-between px-2 py-1">
 					<span className="text-grey-comment">{hasResponses}</span>

@@ -73,7 +73,7 @@ const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
 
 
 	return (
-		<AccountContext.Provider value={{roleChangeHandler, role, userInfo, currentOrder, orderHandler, orders, organizations, currentOrganization, changeOrgHandler}}>
+		<AccountContext.Provider value={{roleChangeHandler, role, userInfo, currentOrder, orderHandler, orders, organizations}}>
 			{children}
 		</AccountContext.Provider>
 	);

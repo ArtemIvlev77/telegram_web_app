@@ -6,6 +6,8 @@ import { changeUserOrganization } from '../../api';
 type SelectProps = {
 	data: any;
 	userId?: number;
+	selected: any;
+	selectHandler: any;
 }
 const Select: FC<SelectProps> = ({data, userId}) => {
 	const [selected, setSelected] = useState(data[0]);

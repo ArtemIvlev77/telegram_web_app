@@ -17,7 +17,9 @@ interface AccountContextType extends Object {
 	role: string;
 	userInfo: UserInfoType | undefined;
 	orders: any[];
-	organizations: OrganizationType[]
+	organizations: OrganizationType[],
+	currentOrganization: OrganizationType | undefined,
+	changeOrganizationHandler: (org: OrganizationType) => void
 }
 export const AccountContext = createContext<AccountContextType>({
 	roleChangeHandler: () => {} ,
@@ -27,6 +29,8 @@ export const AccountContext = createContext<AccountContextType>({
 	userInfo: undefined,
 	orders: [],
 	organizations: [],
+	currentOrganization: {id: 0, name: '', isActive: false},
+	changeOrganizationHandler: () => {}
 });
 export const useAccountContext = () => useContext(AccountContext);
 
@@ -34,7 +38,7 @@ const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
 	let { userId } = useTelegram()
 	const [role, setRole] = useState(ROLES.sender)
 	const [organizations, setOrganizations] = useState([])
-	const [currentOrganization, setCurrentOrganization] = useState()
+	const [currentOrganization, setCurrentOrganization] = useState<OrganizationType>()
 	const [orders, setOrders] = useState([])
 	const [currentOrder, setCurrentOrder] = useState('')
 	const [userInfo, setUserInfo] = useState()
@@ -50,8 +54,8 @@ const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
 		}
 	}
 
-	const changeOrgHandler = () => {
-
+	const changeOrganizationHandler = (org: OrganizationType) => {
+		setCurrentOrganization(org)
 	}
 
 	const orderHandler = (order: any) => {
@@ -73,7 +77,8 @@ const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
 
 
 	return (
-		<AccountContext.Provider value={{roleChangeHandler, role, userInfo, currentOrder, orderHandler, orders, organizations}}>
+		<AccountContext.Provider
+			value={{roleChangeHandler, role, userInfo, currentOrder, orderHandler, orders, organizations, currentOrganization, changeOrganizationHandler}}>
 			{children}
 		</AccountContext.Provider>
 	);

@@ -11,16 +11,6 @@ import flightSearch from '../../assets/flightSearch.svg'
 import eye from '../../assets/iconEye.svg';
 
 const Header = () => {
-
-	const races = [
-		{invoiceNumber: 233, invoiceTitle: 'Ташкент-махачкала'},
-		{invoiceNumber: 211, invoiceTitle: 'Ташкент-махачкала'},
-		{invoiceNumber: 21133, invoiceTitle: 'Ташкент-махачкала'},
-		{invoiceNumber: 2433, invoiceTitle: 'Ташкент-махачкала'},
-		{invoiceNumber: 2533, invoiceTitle: 'Ташкент-махачкала'},
-		{invoiceNumber: 733, invoiceTitle: 'Ташкент-махачкала'},
-	]
-
 	const location = useLocation();
 	const {onClose,  tg} = useTelegram()
 	const [race, setRace] = useState();
@@ -31,7 +21,16 @@ const Header = () => {
 		setRace(e.target.value)
 	}
 
-	const {role, roleChangeHandler, userInfo, currentOrder, organizations} = useAccountContext();
+	const {
+		role,
+		roleChangeHandler,
+		userInfo,
+		currentOrder,
+		organizations,
+		currentOrganization,
+		changeOrganizationHandler
+	} = useAccountContext();
+
 	return (
 		<header className="flex flex-col px-5 py-1 text-sm bg-tg-secondary-bg h-[20%] z-10">
 			{location.pathname === '/' ? (
@@ -59,7 +58,10 @@ const Header = () => {
 							<div className="flex justify-center">
 								<div className="mb-3 xl:w-96 w-full">
 									<span className="text-tg-text">Мои организации</span>
-									<Select data={organizations} userId={userInfo?.tgid}/>
+									<Select data={organizations}
+											userId={userInfo?.tgid}
+											selected={currentOrganization}
+											selectHandler={changeOrganizationHandler}/>
 								</div>
 							</div>
 						</div>

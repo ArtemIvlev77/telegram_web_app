@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import newMessageIcon from '../../../assets/newMessage.svg'
 import bell from '../../../assets/bell.svg'
+import hiddenIcon from '../../../assets/iconEyeSlash.svg'
 
 interface NotificationStickerProps {
 	hasResponses: boolean;
@@ -11,6 +12,7 @@ interface NotificationStickerProps {
 const NotificationSticker: FC<NotificationStickerProps> = ({hasResponses, hasMessages, isHidden}) => {
 	return (
 		<div className="flex justify-around gap-4 text-xs text-tg-text">
+			{isHidden && <img src={hiddenIcon} alt="hiddenIcon"/>}
 			{hasMessages &&
         <div className="bg-statuses-success flex justify-center items-center py-1 px-2 rounded-lg font-bold"><img src={newMessageIcon} alt=""/> Новое
           Сообщение</div>}

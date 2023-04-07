@@ -18,7 +18,7 @@ const Chart = () => {
 	return (
 		<div className="mb-8 mt-5 pt-5 px-5 p-1 bg-tg-secondary-bg h-[70%] scroll-auto z-0">
 			<div className="flex justify-between p-3">
-				<span className='text-2xl text-textColors-sub font-semibold'>{role === ROLES.executor ? 'Сделки' : 'Заявки'} - {orders?.length}</span>
+				<span className='text-2xl text-textColors-sub font-semibold'>{role === ROLES.executor ? 'Рейсы' : 'Заявки'} - {orders?.length}</span>
 				{/*<img src={filter} alt="filter"/>*/}
 			</div>
 			<div className="flex flex-col gap-2">

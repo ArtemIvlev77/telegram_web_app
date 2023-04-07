@@ -1,7 +1,7 @@
 import {
 	createContext,
 	FC,
-	PropsWithChildren, useCallback,
+	PropsWithChildren,
 	useContext, useEffect,
 	useState
 } from 'react';
@@ -35,8 +35,8 @@ export const AccountContext = createContext<AccountContextType>({
 export const useAccountContext = () => useContext(AccountContext);
 
 const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
-	let { userId } = useTelegram()
-	// let userId = 326099968
+	// let { userId } = useTelegram()
+	let userId = 326099968
 
 	const [role, setRole] = useState(ROLES.sender)
 	const [organizations, setOrganizations] = useState([])

@@ -23,7 +23,7 @@ export const getOrganizationTrips = async (organizationId: number) => {
 		}
 
 	} catch (e) {
-	alert(e + 'error getUserData')
+	alert(e + 'error getOrganizationTrips')
 	}
 }
 
@@ -36,7 +36,7 @@ export const switchUserRole = async(userId: number, role: number) => {
 		}
 
 	} catch (e) {
-		alert(e + 'error getUserData')
+		alert(e + 'error switchUserRole')
 	}
 }
 

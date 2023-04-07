@@ -21,16 +21,17 @@ const Chart = () => {
 				{/*<img src={filter} alt="filter"/>*/}
 			</div>
 			<div className="flex flex-col gap-2">
-				{orders.map((invoice) => (
+				{orders.map((trip) => (
 					<ChartCard
-						key={invoice.id}
-						companyName={invoice.organization}
-						messages={invoice.messages}
-						raceInfo={`#${invoice.id} ${invoice.from} - ${invoice.to}`}
-						status={invoice.status}
+						key={trip.id}
+						hasResponses={trip.organization}
+						hasMessages={trip.messages}
+						header={trip.header}
+						status={trip.status}
+						isHidden={trip.isHidden}
 						routeCallBack={() => {
-							orderHandler(invoice.id)
-							navigate(`/orders/${invoice.id}`)
+							orderHandler(trip.id)
+							navigate(`/orders/${trip.id}`)
 						}}
 					/>
 				))}

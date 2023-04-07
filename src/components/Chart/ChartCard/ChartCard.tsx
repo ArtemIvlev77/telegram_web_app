@@ -10,20 +10,21 @@ import {useAccountContext} from '../../../shared/context/accountContext';
 
 type ChartCardProps = {
 	status: orderStates;
-	raceInfo: string;
-	messages: number;
-	companyName: string;
+	header: string;
+	hasMessages: boolean;
+	hasResponses: boolean;
+	isHidden: boolean
 	routeCallBack: () => void;
 }
 
-const ChartCard: FC<ChartCardProps> = ({status, raceInfo, messages, companyName, routeCallBack}) => {
+const ChartCard: FC<ChartCardProps> = ({status, header, hasMessages, hasResponses,isHidden, routeCallBack}) => {
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 	const location = useLocation().pathname
 
 	return (
 		<div className="rounded-2xl bg-tg-primary-bg p-2">
 			<div className="flex gap-2 justify-between items-center p-2">
-				<span className={'font-bold text-tg-text'} onClick={routeCallBack}>{raceInfo}</span>
+				<span className={'font-bold text-tg-text'} onClick={routeCallBack}>{header}</span>
 				<div className="relative flex box-border w-[200px] h-[50px] cursor-pointer" onClick={(e) => {
 					e.stopPropagation()
 					setModalIsOpen(true)
@@ -39,14 +40,14 @@ const ChartCard: FC<ChartCardProps> = ({status, raceInfo, messages, companyName,
 
 			{location === '/'
 				?
-				<div className="flex justify-end"><NotificationSticker newMessage={true} newResponse={true}/></div>
+				<div className="flex justify-end"><NotificationSticker hasMessages={hasMessages} hasResponses={hasResponses}/></div>
 				:
 				<div className="flex justify-between px-2 py-1">
-					<span className="text-grey-comment">{companyName}</span>
+					<span className="text-grey-comment">{hasResponses}</span>
 					<div className="flex gap-2">
 						<div className="flex py-0.5 px-2 font-bold gap-1 justify-center items-center rounded-2xl bg-sub-bg text-tg-text">
 							<img src={messageIcon} alt="msgs"/>
-							{messages ? messages :null}
+							{hasMessages ? hasMessages :null}
 						</div>
 						<StatusSticker status={status}/>
 					</div>

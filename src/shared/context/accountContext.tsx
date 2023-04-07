@@ -1,7 +1,7 @@
 import {
 	createContext,
 	FC,
-	PropsWithChildren,
+	PropsWithChildren, useCallback,
 	useContext, useEffect,
 	useState
 } from 'react';
@@ -56,16 +56,14 @@ const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
 
 	const changeOrganizationHandler = (org: OrganizationType) => {
 		setCurrentOrganization(org)
+		if(org?.id)
+		getOrganizationTrips(org.id)
+			.then((res) => setOrders(res?.payload))
 	}
 
 	const orderHandler = (order: any) => {
 		setCurrentOrder(order)
 	}
-
-	useEffect(() => {
-		currentOrganization && getOrganizationTrips(currentOrganization.id)
-			.then((res) => setOrders(res?.payload))	}, [currentOrganization]);
-
 
 	useEffect(() => {
 		userId = 326099968
@@ -74,9 +72,9 @@ const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
 			setUserInfo(res?.payload)
 			setOrganizations(res?.payload.organizations)
 			setCurrentOrganization(res?.payload.organizations.filter((org: OrganizationType) => org.isActive))
-			getOrganizationTrips(res?.payload.organizations[0]?.id).then(res => {
+		/*	getOrganizationTrips(res?.payload.organizations[0]?.id).then(res => {
 				setOrders(res?.payload)
-			})
+			})*/
 		})
 	}, [userId])
 

@@ -11,7 +11,7 @@ interface NotificationStickerProps {
 
 const NotificationSticker: FC<NotificationStickerProps> = ({hasResponses, hasMessages, isHidden}) => {
 	return (
-		<div className="flex justify-around gap-1 text-xs text-tg-text">
+		<div className="flex w-full justify-between gap-1 text-xs text-tg-text">
 			{isHidden && <img src={hiddenIcon} alt="hiddenIcon"/>}
 			{hasMessages &&
         <div className="bg-statuses-success flex justify-center items-center py-1 px-2 rounded-lg font-bold"><img src={newMessageIcon} alt=""/> Новое

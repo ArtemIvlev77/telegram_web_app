@@ -14,11 +14,9 @@ export const getUserData = async (userId: number) => {
 	}
 }
 
-export const getOrganizationTrips = async (organizationId: number, userRole: number) => {
+export const getOrganizationTrips = async (organizationId: number) => {
 	try {
-		const response = await axios.get(
-			`${BASE_URL}/GetOrganizationTrips?orgId=${organizationId}&userRole=${userRole}`
-		)
+		const response = await axios.get(`${BASE_URL}/GetOrganizationTrips?orgId=${organizationId}`)
 
 		if(response.status === 200) {
 			return {payload: response.data}
@@ -57,7 +55,7 @@ export const changeUserOrganization = async (userId:number, organizationId: numb
 
 export const openDeal = async (userId: number, dealId: number) => {
 	try {
-		const response = await axios.get(`${BASE_URL}/OpenDeal?tgid=${userId}&dealId=${dealId}`)
+		const response = await axios.post(`${BASE_URL}/OpenDeal?tgid=${userId}&dealId=${dealId}`)
 
 		if(response.status === 200) {
 			return {payload: response.data}
@@ -70,7 +68,7 @@ export const openDeal = async (userId: number, dealId: number) => {
 
 export const getTripDeals = async (tripId: number) => {
 	try {
-		const response = await axios.get(`${BASE_URL}/GetTripDeals?tripId=${tripId}`)
+		const response = await axios.post(`${BASE_URL}/GetTripDeals?tripId=${tripId}`)
 
 		if(response.status === 200) {
 			return {payload: response.data}
@@ -81,36 +79,5 @@ export const getTripDeals = async (tripId: number) => {
 	}
 
 }
-
-export const getOrganizationById = async (organizationId: number) => {
-	try {
-		const response = await axios.get(
-			`${BASE_URL}/GetOrganizationById?orgId=${organizationId}`
-		)
-
-		if(response.status === 200) {
-			return {payload: response.data}
-		}
-
-	} catch (e) {
-		alert(e + 'error getOrganizationTrips')
-	}
-}
-
-export const openCreateTripAction = async (tgid: number) => {
-	try {
-		const response = await axios.get(
-			`${BASE_URL}/OpenCreateTripAction?tgid=${tgid}`
-		)
-
-		if(response.status === 200) {
-			return {payload: response.data}
-		}
-
-	} catch (e) {
-		alert(e + 'error getOrganizationTrips')
-	}
-}
-
 
 

@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
-import {ROLES} from '../enums/enums';
+import {Simulate} from 'react-dom/test-utils';
+import click = Simulate.click;
 
 interface RadioButtonProps {
 	id: string;

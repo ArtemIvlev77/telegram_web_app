@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useTelegram} from '../../hooks/useTelegram';
 import RadioButton from '../../shared/UI/RadioButton';
 import {useAccountContext} from '../../shared/context/accountContext';
-import {ROLES, RolesEnum} from '../../shared/enums/enums';
+import {ROLES} from '../../shared/enums/enums';
 import Select from '../../shared/UI/Select';
 import {useLocation} from 'react-router-dom';
 import Button from '../../shared/UI/Button';
@@ -42,14 +42,14 @@ const Header = () => {
 						</div>
 					</div>
 					<div className="flex justify-center justify-self-center bg-tg-primary-bg p-1 rounded-xl gap-2">
-						<RadioButton id={ROLES[RolesEnum.sender]}
+						<RadioButton id={ROLES.sender}
 						             name={'role'}
-						             checked={role === RolesEnum.sender}
+						             checked={role === ROLES.sender}
 						             changeHandler={roleChangeHandler}
 						             clickHandler={roleChangeHandler}/>
-						<RadioButton id={ROLES[RolesEnum.executor]}
+						<RadioButton id={ROLES.executor}
 						             name={'role'}
-						             checked={role === RolesEnum.executor}
+						             checked={role === ROLES.executor}
 						             changeHandler={roleChangeHandler}
 						             clickHandler={roleChangeHandler}/>
 					</div>

@@ -2,11 +2,11 @@ import {FC} from 'react';
 
 
 export enum orderStates  {
-	active,
+	inbox,
 	idle,
+	active,
 	success,
-	refuse,
-	inbox
+	refuse
 }
 
 export type Status<Record extends orderStates> = {

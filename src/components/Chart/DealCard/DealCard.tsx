@@ -25,7 +25,7 @@ const DealCard: FC<DealType> = ({id, status,header, routeCallBack, organizName, 
 					setModalIsOpen(true)
 				}}>
               <img className={'w-4 h-4 my-2 ml-auto'} src={dots} alt="context-menu"/>
-              <OrderModal isOpen={modalIsOpen} closeHandler={setModalIsOpen} status={STATES[status]?.title}/>
+              <OrderModal isOpen={modalIsOpen} closeHandler={setModalIsOpen} status={STATES[status]?.title} dealId={id}/>
 				</div>
 			</div>
 				<div className="flex justify-between px-2 py-1">

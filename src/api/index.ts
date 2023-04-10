@@ -73,7 +73,7 @@ export const openCreateTripAction = async (tgid: number) => {
 
 export const getTripDeals = async(tgid: number, tripId: string) => {
 	try {
-		const response = await axios.get(`${BASE_URL}/getTripDeals?tgid=${tgid}&tripId=${tripId}`)
+		const response = await axios.get(`${BASE_URL}/GetTripDeals?tgid=${tgid}&tripId=${tripId}`)
 		if(response.status === 200) {
 			return {payload: response.data}
 		}
@@ -82,4 +82,14 @@ export const getTripDeals = async(tgid: number, tripId: string) => {
 	}
 }
 
+export const openDealWithChat = async (tgid: number, dealId: number) => {
+	try {
+		const response = await axios.get(`${BASE_URL}/OpenDeal?tgid=${tgid}&tripId=${dealId}`)
+		if(response.status === 200) {
+			return {payload: response.data}
+		}
+	} catch (e) {
+		alert(e + 'error openDealWithChat')
+	}
+}
 

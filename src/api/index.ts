@@ -93,3 +93,32 @@ export const openDealWithChat = async (tgid: number, dealId: number) => {
 	}
 }
 
+export const closeDeal = async (tgid: number, dealId: number, tripId:string) => {
+	try {
+		const response = await axios.post(`${BASE_URL}/CloseDeal?tgid=${tgid}&tripId=${tripId}&dealId=${dealId}`)
+		if(response.status === 200) {
+			return {payload: response.data}
+		}
+	} catch (e) {
+		alert(e + 'error closeDeal')
+	}
+}
+
+export const archiveDeal = async (tgid: number, dealId: number, tripId: string) => {
+	try {
+		const response = await axios.post(`${BASE_URL}/ArchiveDeal?tgid=${tgid}&tripId=${tripId}&dealId=${dealId}`)
+		if(response.status === 200) {
+			return {payload: response.data}
+		}
+	} catch (e) {
+		alert(e + 'error archiveDeal')
+	}
+}
+
+export const unArchiveDeal = async (tgid: number, dealId: number, tripId: string) => {
+	try {
+		const response = await axios.post(`${BASE_URL}/UnarchiveDeal?tgid=${tgid}&tripId=${tripId}&dealId=${dealId}`)
+	} catch (e) {
+		alert(e + 'error unArchiveDeal')
+	}
+}

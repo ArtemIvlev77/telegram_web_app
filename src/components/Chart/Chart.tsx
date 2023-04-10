@@ -16,23 +16,23 @@ const Chart: FC<ChartOptionsType> = ({tripsPage, dealsPage}) => {
 	const navigate = useNavigate()
 	const {role,orders  } = useAccountContext()
 	const {orderHandler, userInfo} = useAccountContext()
-	const {dealId} = useParams();
+	const {tripId} = useParams();
 	const [deals, setDeals] = useState<DealType[]>([]);
 
 	useEffect(() => {
-		dealId && userInfo?.tgid && getTripDeals(userInfo?.tgid, dealId).then((res) => setDeals(res?.payload))
-		// dealId && userInfo?.tgid && getTripDeals(userInfo?.tgid, dealId).then((res) => setDeals([
-		// 	{
-		// 		id: 1,
-		// 		header: 'Заявка №1',
-		// 		status: 1,
-		// 		organizName: 'TashkentAuto',
-		// 		hasUnreadMessages: true,
-		// 		messages: 45,
-		// 	}
-		// ]))
+		// tripId && userInfo?.tgid && getTripDeals(userInfo?.tgid, tripId).then((res) => setDeals(res?.payload))
+		tripId && userInfo?.tgid && getTripDeals(userInfo?.tgid, tripId).then((res) => setDeals([
+			{
+				id: 1,
+				header: 'Заявка №1',
+				status: 3,
+				organizName: 'TashkentAuto',
+				hasUnreadMessages: true,
+				messages: 45,
+			}
+		]))
 
-	}, [dealId])
+	}, [tripId])
 	return (
 		<div className="mb-8 mt-5 pt-5 px-5 p-1 bg-tg-secondary-bg h-[70%] scroll-auto z-0">
 			<div className="flex justify-between p-3">

@@ -1,8 +1,9 @@
 import React, {FC, useState} from 'react';
 import dots from '../../../assets/dots.svg';
-import OrderModal from '../OrderModal/OrderModal';
+import DealModal from '../DealModal/DealModal';
 import StatusSticker, {orderStates, STATES} from '../StatusSticker/StatusSticker';
 import messageIcon from '../../../assets/messages.svg';
+import {useParams} from 'react-router-dom';
 
 export type DealType = {
 	id: number;
@@ -16,6 +17,7 @@ export type DealType = {
 
 const DealCard: FC<DealType> = ({id, status,header, routeCallBack, organizName, messages, hasUnreadMessages }) => {
 	const [modalIsOpen, setModalIsOpen] = useState(false);
+	const {tripId} = useParams()
 	return (
 		<div className="rounded-2xl bg-tg-primary-bg p-2">
 			<div className="flex gap-2 justify-between items-center p-2">
@@ -25,7 +27,7 @@ const DealCard: FC<DealType> = ({id, status,header, routeCallBack, organizName, 
 					setModalIsOpen(true)
 				}}>
               <img className={'w-4 h-4 my-2 ml-auto'} src={dots} alt="context-menu"/>
-              <OrderModal isOpen={modalIsOpen} closeHandler={setModalIsOpen} status={STATES[status]?.title} dealId={id}/>
+              <DealModal isOpen={modalIsOpen} closeHandler={setModalIsOpen} status={STATES[status]?.title} dealId={id} tripId={tripId ?? ''}/>
 				</div>
 			</div>
 				<div className="flex justify-between px-2 py-1">

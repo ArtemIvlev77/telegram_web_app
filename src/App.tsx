@@ -5,7 +5,7 @@ import {useTelegram} from './hooks/useTelegram';
 import Chart from './components/Chart/Chart';
 import {Route, Routes} from 'react-router-dom';
 import Footer from './components/Footer/Footer';
-import Orders from './components/Orders/Orders';
+import DealsList from './components/Orders/Orders';
 import Races from './components/Races/Races';
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
 			<Header/>
 			<Routes>
 				<Route index element={<Chart tripsPage={true}/>}/>
-				<Route path="/orders/:dealId" element={<Orders/>}/>
+				<Route path="/orders/:tripId" element={<DealsList/>}/>
 				<Route path="/races/:id" element={<Races/>}/>
 			</Routes>
 			<Footer/>

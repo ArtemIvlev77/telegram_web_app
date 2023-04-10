@@ -36,7 +36,7 @@ const Header = () => {
 				<>
 					<div className="flex flex-col justify-self-start gap-0.5">
 						<span className="text-tg-text">{userInfo?.userName ?? 'Username'}</span>
-						<span className="text-tg-hint">id: {userInfo?.tgid ?? '---'} </span>
+						<span className="text-tg-hint">id: {userInfo?.id ?? '---'} </span>
 						<div className="flex items-center justify-between gap-2">
 						</div>
 					</div>

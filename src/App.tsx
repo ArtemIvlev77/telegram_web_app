@@ -21,8 +21,8 @@ function App() {
 		<main className="App bg-tg-secondary-bg h-screen text-tg-text text-sm">
 			<Header/>
 			<Routes>
-				<Route index element={<Chart/>}/>
-				<Route path="/orders/:id" element={<Orders/>}/>
+				<Route index element={<Chart tripsPage={true}/>}/>
+				<Route path="/orders/:dealId" element={<Orders/>}/>
 				<Route path="/races/:id" element={<Races/>}/>
 			</Routes>
 			<Footer/>

@@ -1,16 +1,38 @@
-import React, {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+import React, {FC, useEffect, useState} from 'react';
+import {useNavigate, useParams} from 'react-router-dom';
 import TripCard from './TripCard/TripCard';
 
 import {ROLES} from '../../shared/enums/enums';
 import {useAccountContext} from '../../shared/context/accountContext';
-import DealCard, {DealType} from './DealCard';
+import DealCard, {DealType} from './DealCard/DealCard';
+import {getTripDeals} from '../../api';
 
-const Chart = () => {
+type ChartOptionsType = {
+	tripsPage?: boolean;
+	dealsPage?: boolean;
+}
+
+const Chart: FC<ChartOptionsType> = ({tripsPage, dealsPage}) => {
 	const navigate = useNavigate()
-	const {role,orders , deals } = useAccountContext()
-	const {orderHandler} = useAccountContext()
+	const {role,orders  } = useAccountContext()
+	const {orderHandler, userInfo} = useAccountContext()
+	const {dealId} = useParams();
+	const [deals, setDeals] = useState<DealType[]>([]);
 
+	useEffect(() => {
+		dealId && userInfo?.tgid && getTripDeals(userInfo?.tgid, dealId).then((res) => setDeals(res?.payload))
+		// dealId && userInfo?.tgid && getTripDeals(userInfo?.tgid, dealId).then((res) => setDeals([
+		// 	{
+		// 		id: 1,
+		// 		header: 'Заявка №1',
+		// 		status: 1,
+		// 		organizName: 'TashkentAuto',
+		// 		hasUnreadMessages: true,
+		// 		messages: 45,
+		// 	}
+		// ]))
+
+	}, [dealId])
 	// const deleteHandler = (id: number) => {
 	// 	setInvoiceList(invoiceList.filter((el) => el.id !== id))
 	// }
@@ -21,7 +43,7 @@ const Chart = () => {
 				{/*<img src={filter} alt="filter"/>*/}
 			</div>
 			<div className="flex flex-col gap-2">
-				{location.pathname === '/' ?
+				{tripsPage ?
 				orders.map((trip) => (
 					<TripCard
 					key={trip.id}
@@ -33,7 +55,7 @@ const Chart = () => {
 				hidden={trip.hidden}
 				routeCallBack={() => {
 					orderHandler(trip.id)
-					navigate(`/orders/${trip.id}`)
+					navigate(`/orders/${trip.id}`, {state: {tripHeader: trip.header}})
 				}}
 			/>
 			)) : deals.map((deal: DealType) => (

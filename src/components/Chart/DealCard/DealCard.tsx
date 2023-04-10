@@ -1,8 +1,8 @@
 import React, {FC, useState} from 'react';
-import dots from '../../assets/dots.svg';
-import OrderModal from './OrderModal/OrderModal';
-import StatusSticker, {orderStates, STATES} from './StatusSticker/StatusSticker';
-import messageIcon from '../../assets/messages.svg';
+import dots from '../../../assets/dots.svg';
+import OrderModal from '../OrderModal/OrderModal';
+import StatusSticker, {orderStates, STATES} from '../StatusSticker/StatusSticker';
+import messageIcon from '../../../assets/messages.svg';
 
 export type DealType = {
 	id: number;
@@ -11,7 +11,7 @@ export type DealType = {
 	hasUnreadMessages: boolean;
 	messages: number;
 	organizName: string;
-	routeCallBack: () => void;
+	routeCallBack?: () => void;
 }
 
 const DealCard: FC<DealType> = ({id, status,header, routeCallBack, organizName, messages, hasUnreadMessages }) => {
@@ -29,11 +29,11 @@ const DealCard: FC<DealType> = ({id, status,header, routeCallBack, organizName, 
 				</div>
 			</div>
 				<div className="flex justify-between px-2 py-1">
-					<span className="text-grey-comment">{messages}</span>
+					<span>{organizName}</span>
 					<div className="flex gap-2">
 						<div className="flex py-0.5 px-2 font-bold gap-1 justify-center items-center rounded-2xl bg-sub-bg text-tg-text">
-							<img src={messageIcon} alt="msgs"/>
 							{hasUnreadMessages ? messages : null }
+							<img src={messageIcon} alt="msgs"/>
 						</div>
 						<StatusSticker status={status}/>
 					</div>

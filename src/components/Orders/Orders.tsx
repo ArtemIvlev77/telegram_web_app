@@ -4,7 +4,7 @@ import Chart from '../Chart/Chart';
 const Orders = () => {
 	return (
 		<>
-			<Chart/>
+			<Chart dealsPage={true}/>
 		</>
 	);
 };

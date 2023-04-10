@@ -9,7 +9,7 @@ import {ROLES} from '../enums/enums';
 import {useTelegram} from '../../hooks/useTelegram';
 import {OrganizationType, UserInfoType} from '../../utils/types';
 import {changeUserOrganization, getOrganizationTrips, getTripDeals, getUserData, switchUserRole} from '../../api';
-import { DealType} from '../../components/Chart/DealCard';
+import { DealType} from '../../components/Chart/DealCard/DealCard';
 import {useParams} from 'react-router-dom';
 
 interface AccountContextType extends Object {
@@ -20,7 +20,6 @@ interface AccountContextType extends Object {
 	userInfo: UserInfoType | undefined;
 	orders: any[];
 	organizations: OrganizationType[],
-	deals: DealType[],
 	currentOrganization: OrganizationType | undefined;
 	changeOrganizationHandler: (org: OrganizationType) => void;
 	onClose: () => void;
@@ -33,7 +32,6 @@ export const AccountContext = createContext<AccountContextType>({
 	userInfo: undefined,
 	orders: [],
 	organizations: [],
-	deals: [],
 	currentOrganization: {id: 0, name: '', isActive: false},
 	changeOrganizationHandler: () => {},
 	onClose: () => {},
@@ -43,7 +41,7 @@ export const useAccountContext = () => useContext(AccountContext);
 const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
 	let { onClose } = useTelegram()
 	// let { userId, onClose } = useTelegram()
-	const params = useParams();
+
 	let userId = 326099968
 
 	const [role, setRole] = useState(ROLES.sender)
@@ -101,11 +99,6 @@ const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
 			.then((res) => setOrders(res?.payload))
 		})
 	}, [userId])
-
-	useEffect(() => {
-		params.id && userInfo?.tgid && getTripDeals(userInfo?.tgid, params.id).then((res) => setDeals(res?.payload))
-	}, [userInfo, params.id])
-
 	return (
 		<AccountContext.Provider
 			value={{
@@ -116,7 +109,6 @@ const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
 				orderHandler,
 				orders,
 				organizations,
-				deals,
 				currentOrganization,
 				changeOrganizationHandler,
 				onClose,

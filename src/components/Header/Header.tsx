@@ -4,7 +4,7 @@ import RadioButton from '../../shared/UI/RadioButton';
 import {useAccountContext} from '../../shared/context/accountContext';
 import {ROLES} from '../../shared/enums/enums';
 import Select from '../../shared/UI/Select';
-import {useLocation} from 'react-router-dom';
+import {useLocation, useParams, useSearchParams} from 'react-router-dom';
 import Button from '../../shared/UI/Button';
 import list from '../../assets/list.svg';
 import flightSearch from '../../assets/flightSearch.svg'
@@ -21,7 +21,7 @@ const Header = () => {
 		currentOrganization,
 		changeOrganizationHandler
 	} = useAccountContext();
-	const location = useLocation();
+	const {state} = useLocation();
 
 	const [race, setRace] = useState();
 
@@ -29,8 +29,6 @@ const Header = () => {
 	const raceHandler = (e: any) => {
 		setRace(e.target.value)
 	}
-
-
 
 	return (
 		<header className="flex flex-col px-5 py-1 text-sm bg-tg-secondary-bg h-[20%] z-10">
@@ -71,7 +69,7 @@ const Header = () => {
 				<>
 					<div className="flex items-center justify-start gap-2 p-2">
 						<img src={list} alt="list"/>
-						<h1 className="text-tg-text text-2xl">{currentOrder}</h1>
+						<h1 className="text-tg-text text-2xl">#{currentOrder} {state?.tripHeader}</h1>
 					</div>
 					<div className="flex justify-between w-full mt-2 p-2">
 						<Button img={flightSearch} clickHandler={() => console.log('asdas')} title={'Подобрать рейс'} className={'font-semibold bg-tg-button'}/>

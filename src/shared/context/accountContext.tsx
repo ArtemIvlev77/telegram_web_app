@@ -89,7 +89,10 @@ const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
 		userId && getUserData(userId).then(res => {
 			setUserInfo(res?.payload)
 			setOrganizations(res?.payload.organizations)
-			setCurrentOrganization(res?.payload.organizations.filter((org: OrganizationType) => org.isActive)[0])
+			const curOrg = res?.payload.organizations.filter((org: OrganizationType) => org.isActive)[0]
+			setCurrentOrganization(curOrg)
+			getOrganizationTrips(curOrg.id, res?.payload.role)
+			.then((res) => setOrders(res?.payload))
 		})
 	}, [userId])
 

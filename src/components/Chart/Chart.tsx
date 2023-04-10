@@ -40,7 +40,6 @@ const Chart: FC<ChartOptionsType> = ({tripsPage, dealsPage}) => {
 				{tripsPage && <span
           className="text-2xl text-textColors-sub font-semibold">{role === ROLES.executor ? 'Рейсы' :'Заявки'} - {orders?.length}</span>}
 				{dealsPage && <span className="text-2xl text-textColors-sub font-semibold">Сделки- {deals.length}</span>}
-
 				{/*<img src={filter} alt="filter"/>*/}
 			</div>
 			<div className="flex flex-col gap-2">

@@ -1,6 +1,5 @@
-import axios, {AxiosError} from 'axios';
+import axios from 'axios';
 import {BASE_URL} from '../utils/constats';
-import {UserInfoType} from '../utils/types';
 
 export const getUserData = async (userId: number) => {
 	try {
@@ -8,7 +7,6 @@ export const getUserData = async (userId: number) => {
 		if (response.status === 200) {
 			return {payload: response.data}
 		}
-
 	} catch (e) {
 		alert(e + 'error getUserData')
 	}
@@ -21,7 +19,6 @@ export const getOrganizationTrips = async (organizationId: number, userRole: num
 		if(response.status === 200) {
 			return {payload: response.data}
 		}
-
 	} catch (e) {
 	alert(e + 'error getOrganizationTrips')
 	}
@@ -30,11 +27,9 @@ export const getOrganizationTrips = async (organizationId: number, userRole: num
 export const switchUserRole = async(userId: number, role: number) => {
 	try {
 		const response = await axios.post(`${BASE_URL}/ChangeRole?tgid=${userId}&role=${role}`)
-
 		if(response.status === 200) {
 			return {payload: response.data}
 		}
-
 	} catch (e) {
 		alert(e + 'error switchUserRole')
 	}
@@ -47,7 +42,6 @@ export const changeUserOrganization = async (userId:number, organizationId: numb
 		if(response.status === 200) {
 			return {payload: response.data}
 		}
-
 	} catch (e) {
 		alert(e + 'error changeUserOrganization')
 	}
@@ -60,7 +54,6 @@ export const openDeal = async (userId: number, dealId: number) => {
 		if(response.status === 200) {
 			return {payload: response.data}
 		}
-
 	} catch (e) {
 		alert(e + 'error openDeal')
 	}
@@ -73,24 +66,20 @@ export const getTripDeals = async (tripId: number) => {
 		if(response.status === 200) {
 			return {payload: response.data}
 		}
-
 	} catch (e) {
 		alert(e + 'error getTripDeals')
 	}
-
 }
 
-export const openCreateTripAction = async (tripId: number) => {
+export const openCreateTripAction = async (tgid: number) => {
 	try {
-		const response = await axios.get(`${BASE_URL}/OpenCreateTripAction?tripId=${tripId}`)
+		const response = await axios.get(`${BASE_URL}/OpenCreateTripAction?tgid=${tgid}`)
 		if(response.status === 200) {
 			return {payload: response.data}
 		}
-
 	} catch (e) {
-		alert(e + 'error getTripDeals')
+		alert(e + 'error openCreateTripAction')
 	}
-
 }
 
 

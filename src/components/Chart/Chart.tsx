@@ -8,8 +8,6 @@ import {useAccountContext} from '../../shared/context/accountContext';
 const Chart = () => {
 	const navigate = useNavigate()
 	const { role, orders } = useAccountContext()
-	console.log(orders)
-
 	const {orderHandler} = useAccountContext()
 
 	// const deleteHandler = (id: number) => {
@@ -25,8 +23,9 @@ const Chart = () => {
 				{orders.map((trip) => (
 					<ChartCard
 						key={trip.id}
-						hasResponses={true}
-						hasMessages={true}
+						id={trip.id}
+						hasResponses={trip.hasResponses}
+						hasMessages={trip.hasMessages}
 						header={trip.header}
 						status={trip.status}
 						hidden={trip.hidden}

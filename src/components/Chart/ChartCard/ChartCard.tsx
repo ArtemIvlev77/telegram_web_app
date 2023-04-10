@@ -9,6 +9,7 @@ import {useAccountContext} from '../../../shared/context/accountContext';
 
 
 type ChartCardProps = {
+	id: number
 	status: orderStates;
 	header: string;
 	hasMessages: boolean;
@@ -17,14 +18,14 @@ type ChartCardProps = {
 	routeCallBack: () => void;
 }
 
-const ChartCard: FC<ChartCardProps> = ({status, header, hasMessages, hasResponses,hidden, routeCallBack}) => {
+const ChartCard: FC<ChartCardProps> = ({id, status, header, hasMessages, hasResponses,hidden, routeCallBack}) => {
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 	const location = useLocation().pathname
 
 	return (
 		<div className="rounded-2xl bg-tg-primary-bg p-2">
 			<div className="flex gap-2 justify-between items-center p-2">
-				<span className={'font-bold text-tg-text'} onClick={routeCallBack}>{header}</span>
+				<span className={'font-bold text-tg-text'} onClick={routeCallBack}>#{id} {header}</span>
 				<div className="relative flex box-border w-[200px] h-[50px] cursor-pointer" onClick={(e) => {
 					e.stopPropagation()
 					setModalIsOpen(true)

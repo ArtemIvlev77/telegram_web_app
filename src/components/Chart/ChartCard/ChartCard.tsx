@@ -13,11 +13,11 @@ type ChartCardProps = {
 	header: string;
 	hasMessages: boolean;
 	hasResponses: boolean;
-	isHidden: boolean
+	hidden: boolean;
 	routeCallBack: () => void;
 }
 
-const ChartCard: FC<ChartCardProps> = ({status, header, hasMessages, hasResponses,isHidden, routeCallBack}) => {
+const ChartCard: FC<ChartCardProps> = ({status, header, hasMessages, hasResponses,hidden, routeCallBack}) => {
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 	const location = useLocation().pathname
 
@@ -40,7 +40,7 @@ const ChartCard: FC<ChartCardProps> = ({status, header, hasMessages, hasResponse
 
 			{location === '/'
 				?
-				<div className="flex justify-end"><NotificationSticker isHidden={isHidden} hasMessages={hasMessages} hasResponses={hasResponses}/></div>
+				<div className="flex justify-end"><NotificationSticker hidden={hidden} hasMessages={hasMessages} hasResponses={hasResponses}/></div>
 				:
 				<div className="flex justify-between px-2 py-1">
 					<span className="text-grey-comment">{hasResponses}</span>

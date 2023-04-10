@@ -29,7 +29,7 @@ const Chart = () => {
 						hasMessages={true}
 						header={trip.header}
 						status={trip.status}
-						isHidden={true}
+						hidden={trip.hidden}
 						routeCallBack={() => {
 							orderHandler(trip.id)
 							navigate(`/orders/${trip.id}`)

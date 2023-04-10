@@ -6,13 +6,13 @@ import hiddenIcon from '../../../assets/iconEyeSlash.svg'
 interface NotificationStickerProps {
 	hasResponses: boolean;
 	hasMessages: boolean;
-	isHidden: boolean;
+	hidden: boolean;
 }
 
-const NotificationSticker: FC<NotificationStickerProps> = ({hasResponses, hasMessages, isHidden}) => {
+const NotificationSticker: FC<NotificationStickerProps> = ({hasResponses, hasMessages, hidden}) => {
 	return (
 		<div className="flex w-full justify-between gap-1 text-xs text-tg-text pl-2">
-			{isHidden && <img src={hiddenIcon} alt="hiddenIcon"/>}
+			{hidden && <img src={hiddenIcon} alt="hiddenIcon"/>}
 			{hasMessages &&
         <div className="bg-statuses-success flex justify-center items-center py-1 px-2 rounded-lg font-bold"><img src={newMessageIcon} alt=""/> Новое
           Сообщение</div>}

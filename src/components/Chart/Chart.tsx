@@ -21,7 +21,7 @@ const Chart = () => {
 				{/*<img src={filter} alt="filter"/>*/}
 			</div>
 			<div className="flex flex-col gap-2">
-				{location.pathname !== '/' ?
+				{location.pathname === '/' ?
 				orders.map((trip) => (
 					<TripCard
 					key={trip.id}

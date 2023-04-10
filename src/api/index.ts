@@ -80,4 +80,17 @@ export const getTripDeals = async (tripId: number) => {
 
 }
 
+export const openCreateTripAction = async (tripId: number) => {
+	try {
+		const response = await axios.get(`${BASE_URL}/OpenCreateTripAction?tripId=${tripId}`)
+		if(response.status === 200) {
+			return {payload: response.data}
+		}
+
+	} catch (e) {
+		alert(e + 'error getTripDeals')
+	}
+
+}
+
 

@@ -18,8 +18,9 @@ interface AccountContextType extends Object {
 	userInfo: UserInfoType | undefined;
 	orders: any[];
 	organizations: OrganizationType[],
-	currentOrganization: OrganizationType | undefined,
-	changeOrganizationHandler: (org: OrganizationType) => void
+	currentOrganization: OrganizationType | undefined;
+	changeOrganizationHandler: (org: OrganizationType) => void;
+	onClose: () => void;
 }
 export const AccountContext = createContext<AccountContextType>({
 	roleChangeHandler: () => {} ,
@@ -30,13 +31,14 @@ export const AccountContext = createContext<AccountContextType>({
 	orders: [],
 	organizations: [],
 	currentOrganization: {id: 0, name: '', isActive: false},
-	changeOrganizationHandler: () => {}
+	changeOrganizationHandler: () => {},
+	onClose: () => {},
 });
 export const useAccountContext = () => useContext(AccountContext);
 
 const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
-	// let { userId } = useTelegram()
-	let userId = 326099968
+	let { userId, onClose } = useTelegram()
+	// let userId = 326099968
 
 	const [role, setRole] = useState(ROLES.sender)
 	const [organizations, setOrganizations] = useState([])
@@ -95,7 +97,7 @@ const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
 
 	return (
 		<AccountContext.Provider
-			value={{roleChangeHandler, role, userInfo, currentOrder, orderHandler, orders, organizations, currentOrganization, changeOrganizationHandler}}>
+			value={{roleChangeHandler, role, userInfo, currentOrder, orderHandler, orders, organizations, currentOrganization, changeOrganizationHandler, onClose}}>
 			{children}
 		</AccountContext.Provider>
 	);

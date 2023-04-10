@@ -8,7 +8,9 @@ import {
 import {ROLES} from '../enums/enums';
 import {useTelegram} from '../../hooks/useTelegram';
 import {OrganizationType, UserInfoType} from '../../utils/types';
-import {changeUserOrganization, getOrganizationTrips, getUserData, switchUserRole} from '../../api';
+import {changeUserOrganization, getOrganizationTrips, getTripDeals, getUserData, switchUserRole} from '../../api';
+import { DealType} from '../../components/Chart/DealCard';
+import {useParams} from 'react-router-dom';
 
 interface AccountContextType extends Object {
 	roleChangeHandler: () => void;
@@ -18,6 +20,7 @@ interface AccountContextType extends Object {
 	userInfo: UserInfoType | undefined;
 	orders: any[];
 	organizations: OrganizationType[],
+	deals: DealType[],
 	currentOrganization: OrganizationType | undefined;
 	changeOrganizationHandler: (org: OrganizationType) => void;
 	onClose: () => void;
@@ -30,6 +33,7 @@ export const AccountContext = createContext<AccountContextType>({
 	userInfo: undefined,
 	orders: [],
 	organizations: [],
+	deals: [],
 	currentOrganization: {id: 0, name: '', isActive: false},
 	changeOrganizationHandler: () => {},
 	onClose: () => {},
@@ -38,6 +42,7 @@ export const useAccountContext = () => useContext(AccountContext);
 
 const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
 	let { userId, onClose } = useTelegram()
+	const params = useParams();
 	// let userId = 326099968
 
 	const [role, setRole] = useState(ROLES.sender)
@@ -45,7 +50,8 @@ const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
 	const [currentOrganization, setCurrentOrganization] = useState<OrganizationType>()
 	const [orders, setOrders] = useState([])
 	const [currentOrder, setCurrentOrder] = useState('')
-	const [userInfo, setUserInfo] = useState<UserInfoType>()
+	const [userInfo, setUserInfo] = useState<UserInfoType>();
+	const [deals, setDeals] = useState([]);
 
 	const roleChangeHandler = () => {
 
@@ -84,7 +90,6 @@ const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
 	const orderHandler = (order: any) => {
 		setCurrentOrder(order)
 	}
-
 	useEffect(() => {
 		userId && getUserData(userId).then(res => {
 			setUserInfo(res?.payload)
@@ -96,11 +101,25 @@ const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
 		})
 	}, [userId])
 
-
+	useEffect(() => {
+		params.id && userInfo?.tgid && getTripDeals(userInfo?.tgid, params.id).then((res) => setDeals(res?.payload))
+	}, [userInfo, params.id])
 
 	return (
 		<AccountContext.Provider
-			value={{roleChangeHandler, role, userInfo, currentOrder, orderHandler, orders, organizations, currentOrganization, changeOrganizationHandler, onClose}}>
+			value={{
+				roleChangeHandler,
+				role,
+				userInfo,
+				currentOrder,
+				orderHandler,
+				orders,
+				organizations,
+				deals,
+				currentOrganization,
+				changeOrganizationHandler,
+				onClose,
+		}}>
 			{children}
 		</AccountContext.Provider>
 	);

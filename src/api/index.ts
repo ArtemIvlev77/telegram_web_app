@@ -59,17 +59,6 @@ export const openDeal = async (userId: number, dealId: number) => {
 	}
 }
 
-export const getTripDeals = async (tripId: number) => {
-	try {
-		const response = await axios.post(`${BASE_URL}/GetTripDeals?tripId=${tripId}`)
-
-		if(response.status === 200) {
-			return {payload: response.data}
-		}
-	} catch (e) {
-		alert(e + 'error getTripDeals')
-	}
-}
 
 export const openCreateTripAction = async (tgid: number) => {
 	try {
@@ -79,6 +68,17 @@ export const openCreateTripAction = async (tgid: number) => {
 		}
 	} catch (e) {
 		alert(e + 'error openCreateTripAction')
+	}
+}
+
+export const getTripDeals = async(tgid: number, tripId: string) => {
+	try {
+		const response = await axios.get(`${BASE_URL}/getTripDeals?tgid=${tgid}&tripId=${tripId}`)
+		if(response.status === 200) {
+			return {payload: response.data}
+		}
+	} catch (e) {
+		alert(e + 'error getTripDeals')
 	}
 }
 

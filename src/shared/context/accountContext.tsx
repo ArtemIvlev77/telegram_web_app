@@ -39,10 +39,9 @@ export const AccountContext = createContext<AccountContextType>({
 export const useAccountContext = () => useContext(AccountContext);
 
 const AccountContextProvider: FC<PropsWithChildren> = ({children}) => {
-	let { onClose } = useTelegram()
-	// let { userId, onClose } = useTelegram()
+	let { userId, onClose } = useTelegram()
 
-	let userId = 326099968
+	// let userId = 326099968
 
 	const [role, setRole] = useState(ROLES.sender)
 	const [organizations, setOrganizations] = useState([])

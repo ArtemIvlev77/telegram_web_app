@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useTelegram} from '../../hooks/useTelegram';
 import RadioButton from '../../shared/UI/RadioButton';
 import {useAccountContext} from '../../shared/context/accountContext';
 import {ROLES} from '../../shared/enums/enums';
 import Select from '../../shared/UI/Select';
-import {useLocation, useParams, useSearchParams} from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 import Button from '../../shared/UI/Button';
 import list from '../../assets/list.svg';
 import flightSearch from '../../assets/flightSearch.svg'
@@ -23,13 +23,6 @@ const Header = () => {
 		changeOrganizationHandler,
 	} = useAccountContext();
 	const {state} = useLocation();
-
-	const [race, setRace] = useState();
-
-	console.log(currentOrder, 'currentOrder')
-	const raceHandler = (e: any) => {
-		setRace(e.target.value)
-	}
 
 	return (
 		<header className="flex flex-col px-5 py-1 text-sm bg-tg-secondary-bg h-[20%] z-10">

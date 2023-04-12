@@ -21,20 +21,10 @@ const Chart: FC<ChartOptionsType> = ({tripsPage, dealsPage}) => {
 
 	const getDeals = async () => {
 		try {
-			if (userInfo && tripId) {
-				const response = await getTripDeals(userInfo?.tgid, tripId)
+			if (userInfo?.tgid && tripId) {
+				const response = await getTripDeals(userInfo.tgid, tripId)
 				if (response) {
-					console.log(response.payload)
-					setDeals([
-						{
-							id: 1,
-							header: 'Заявка №1',
-							status: 3,
-							organizName: 'TashkentAuto',
-							hasUnreadMessages: true,
-							messages: 45,
-						}
-					])
+					setDeals(response.payload)
 				}
 			}
 		} catch (error) {
@@ -62,15 +52,15 @@ const Chart: FC<ChartOptionsType> = ({tripsPage, dealsPage}) => {
 				orders.map((trip) => (
 					<TripCard
 					key={trip.id}
-				id={trip.id}
-				hasResponses={trip.hasResponses}
-				hasMessages={trip.hasMessages}
-				header={trip.header}
-				status={trip.status}
-				hidden={trip.hidden}
-				routeCallBack={() => {
-					orderHandler(trip.id)
-					navigate(`/orders/${trip.id}`, {state: {tripHeader: trip.header}})
+					id={trip.id}
+					hasResponses={trip.hasResponses}
+					hasMessages={trip.hasMessages}
+					header={trip.header}
+					status={trip.status}
+					hidden={trip.hidden}
+					routeCallBack={() => {
+						orderHandler(trip.id)
+						navigate(`/orders/${trip.id}`, {state: {tripHeader: trip.header}})
 				}}
 			/>
 			)) : deals.map((deal: DealType) => (

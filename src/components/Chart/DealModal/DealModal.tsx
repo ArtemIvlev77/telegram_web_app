@@ -51,8 +51,8 @@ const DealModal: FC<DealModalProps> = ({updateHandler, isOpen, closeHandler, sta
 			{status === ACTIVE_STATUS &&
 				<div
 				className="w-full flex items-center justify-items-stretch gap-3  py-4 px-6 hover:bg-sky-500 cursor-pointer text-tg-text fill-tg-text rounded-md"
-				onClick={() => {
-					userInfo?.tgid && closeDeal(userInfo.tgid, dealId, tripId)
+				onClick={async () => {
+					userInfo?.tgid && await closeDeal(userInfo.tgid, dealId, tripId)
 					updateHandler()
 				}}>
 				<svg width="24" height="24" viewBox="0 0 24 24" fill="current" xmlns="http://www.w3.org/2000/svg">
@@ -65,8 +65,8 @@ const DealModal: FC<DealModalProps> = ({updateHandler, isOpen, closeHandler, sta
 			}
 			{status !== ARCHIVE_STATUS && status !== INBOX_STATUS && <div
 					className="w-full flex items-center justify-items-stretch gap-3  py-4 px-6 hover:bg-sky-500 cursor-pointer text-tg-text fill-tg-text rounded-md"
-          onClick={() => {
-						userInfo?.tgid && archiveDeal(userInfo.tgid, dealId, tripId)
+          onClick={async () => {
+						userInfo?.tgid && await archiveDeal(userInfo.tgid, dealId, tripId)
 						updateHandler()
 					}}
 				>
@@ -80,8 +80,8 @@ const DealModal: FC<DealModalProps> = ({updateHandler, isOpen, closeHandler, sta
 			}
 			{status === ARCHIVE_STATUS && <div
 					className="w-full flex items-center justify-items-stretch gap-3 py-4 px-6 hover:bg-sky-500 cursor-pointer text-tg-text fill-tg-text rounded-md"
-					onClick={() => {
-						userInfo?.tgid && unArchiveDeal(userInfo.tgid, dealId, tripId)
+					onClick={async () => {
+						userInfo?.tgid && await unArchiveDeal(userInfo.tgid, dealId, tripId)
 						updateHandler()
 					}}
 				>
@@ -94,8 +94,8 @@ const DealModal: FC<DealModalProps> = ({updateHandler, isOpen, closeHandler, sta
 			}
 			{status === INBOX_STATUS && <div
         className="w-full flex items-center justify-items-stretch gap-3 py-4 px-6 hover:bg-sky-500 cursor-pointer text-tg-text fill-tg-text rounded-md"
-        onClick={() => {
-	        userInfo?.tgid && unArchiveDeal(userInfo.tgid, dealId, tripId)
+        onClick={async () => {
+	        userInfo?.tgid && await unArchiveDeal(userInfo.tgid, dealId, tripId)
 	        updateHandler()
         }}
       >

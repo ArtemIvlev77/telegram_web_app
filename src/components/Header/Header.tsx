@@ -26,7 +26,7 @@ const Header = () => {
 
 	const [race, setRace] = useState();
 
-
+	console.log(currentOrder, 'currentOrder')
 	const raceHandler = (e: any) => {
 		setRace(e.target.value)
 	}

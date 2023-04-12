@@ -1,17 +1,18 @@
 import React, {FC, useEffect, useRef} from 'react';
 import {archiveDeal, closeDeal, openDealWithChat, unArchiveDeal} from '../../../api';
 import {useAccountContext} from '../../../shared/context/accountContext';
-import {ACTIVE_STATUS, ARCHIVE_STATUS, IDLE_STATUS} from '../../../utils/constats';
+import {ACTIVE_STATUS, ARCHIVE_STATUS, IDLE_STATUS, INBOX_STATUS} from '../../../utils/constats';
 
-interface OrderModalProps {
+interface DealModalProps {
 	isOpen: boolean;
 	closeHandler: (isOpen: boolean) => void;
 	status: string;
 	dealId: number;
 	tripId: string;
+	updateHandler: () => void;
 }
 
-const DealModal: FC<OrderModalProps> = ({isOpen, closeHandler, status, dealId, tripId}) => {
+const DealModal: FC<DealModalProps> = ({updateHandler, isOpen, closeHandler, status, dealId, tripId}) => {
 	const modalRef = useRef<HTMLDivElement | null>(null)
 	const outsideClickHandler = (e: any) => {
 		if (modalRef.current && !modalRef.current.contains(e.target)) {
@@ -32,7 +33,7 @@ const DealModal: FC<OrderModalProps> = ({isOpen, closeHandler, status, dealId, t
 	return (
 		<div ref={modalRef}
 		     className={`transition-all absolute z-10 top-0 right-0 w-[200px] bg-tg-secondary-bg shadow rounded-md ${isOpen ? 'fixed' :'hidden'}`}>
-			{status !== ARCHIVE_STATUS && status === ACTIVE_STATUS && <div
+			{status === ACTIVE_STATUS && <div
 				className="w-full flex items-center justify-items-stretch gap-3 py-4 px-6 hover:bg-sky-500 cursor-pointer text-tg-text fill-tg-text rounded-md"
 				onClick={() => {
 					userInfo?.tgid && openDealWithChat(userInfo.tgid, dealId)
@@ -47,11 +48,12 @@ const DealModal: FC<OrderModalProps> = ({isOpen, closeHandler, status, dealId, t
 
 				<span>Перейти в чат</span>
 			</div>}
-			{status !== ARCHIVE_STATUS && status !== IDLE_STATUS &&
+			{status === ACTIVE_STATUS &&
 				<div
 				className="w-full flex items-center justify-items-stretch gap-3  py-4 px-6 hover:bg-sky-500 cursor-pointer text-tg-text fill-tg-text rounded-md"
 				onClick={() => {
 					userInfo?.tgid && closeDeal(userInfo.tgid, dealId, tripId)
+					updateHandler()
 				}}>
 				<svg width="24" height="24" viewBox="0 0 24 24" fill="current" xmlns="http://www.w3.org/2000/svg">
 					<path fillRule="evenodd" clipRule="evenodd"
@@ -61,9 +63,12 @@ const DealModal: FC<OrderModalProps> = ({isOpen, closeHandler, status, dealId, t
 				<span>Завершить</span>
 			</div>
 			}
-			{status !== ARCHIVE_STATUS && <div
+			{status !== ARCHIVE_STATUS && status !== INBOX_STATUS && <div
 					className="w-full flex items-center justify-items-stretch gap-3  py-4 px-6 hover:bg-sky-500 cursor-pointer text-tg-text fill-tg-text rounded-md"
-					onClick={() => userInfo?.tgid && archiveDeal( userInfo.tgid, dealId, tripId )}
+          onClick={() => {
+						userInfo?.tgid && archiveDeal(userInfo.tgid, dealId, tripId)
+						updateHandler()
+					}}
 				>
 					<svg width="24" height="24" viewBox="0 0 24 24" fill="current" xmlns="http://www.w3.org/2000/svg">
 						<path fillRule="evenodd" clipRule="evenodd"
@@ -75,16 +80,35 @@ const DealModal: FC<OrderModalProps> = ({isOpen, closeHandler, status, dealId, t
 			}
 			{status === ARCHIVE_STATUS && <div
 					className="w-full flex items-center justify-items-stretch gap-3 py-4 px-6 hover:bg-sky-500 cursor-pointer text-tg-text fill-tg-text rounded-md"
-					onClick={() =>  userInfo?.tgid && unArchiveDeal(userInfo.tgid, dealId, tripId)}
+					onClick={() => {
+						userInfo?.tgid && unArchiveDeal(userInfo.tgid, dealId, tripId)
+						updateHandler()
+					}}
 				>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M14 15L10 19L14 23" stroke="#111111" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M5.93782 15.5C5.16735 14.1655 4.85875 12.6141 5.05989 11.0863C5.26102 9.55856 5.96064 8.13986 7.05025 7.05025C8.13986 5.96064 9.55856 5.26102 11.0863 5.05989C12.6141 4.85875 14.1655 5.16735 15.5 5.93782C16.8345 6.70829 17.8775 7.89757 18.4672 9.32122C19.0568 10.7449 19.1603 12.3233 18.7615 13.8117C18.3627 15.3002 17.4838 16.6154 16.2613 17.5535C15.0388 18.4915 13.5409 19 12 19" stroke="#111111" stroke-width="1.5" stroke-linecap="round"/>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="current" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 15L10 19L14 23" stroke="#111111" strokeWidth="1.5" strokeLinecap="round"/>
+          <path d="M5.93782 15.5C5.16735 14.1655 4.85875 12.6141 5.05989 11.0863C5.26102 9.55856 5.96064 8.13986 7.05025 7.05025C8.13986 5.96064 9.55856 5.26102 11.0863 5.05989C12.6141 4.85875 14.1655 5.16735 15.5 5.93782C16.8345 6.70829 17.8775 7.89757 18.4672 9.32122C19.0568 10.7449 19.1603 12.3233 18.7615 13.8117C18.3627 15.3002 17.4838 16.6154 16.2613 17.5535C15.0388 18.4915 13.5409 19 12 19" stroke="#111111" strokeWidth="1.5" strokeLinecap="round"/>
         </svg>
 				<span>Восстановить</span>
 				</div>
 			}
+			{status === INBOX_STATUS && <div
+        className="w-full flex items-center justify-items-stretch gap-3 py-4 px-6 hover:bg-sky-500 cursor-pointer text-tg-text fill-tg-text rounded-md"
+        onClick={() => {
+	        userInfo?.tgid && unArchiveDeal(userInfo.tgid, dealId, tripId)
+	        updateHandler()
+        }}
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="current" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 12L20.7501 13.8753C20.9152 14.288 21 14.7284 21 15.1728V15.1728C21 17.1024 19.4358 18.6667 17.5062 18.6667H15.6M8.4 18.6667H6.24575C4.45317 18.6667 3 17.2135 3 15.4209V15.4209C3 14.8189 3.16746 14.2287 3.48365 13.7163L6.6 8.66667L6.88035 6.59001C7.23522 3.96132 9.47911 2 12.1316 2H13.1587C14.6887 2 16.1226 2.74653 17 4V4M8.4 18.6667L9.34473 20.4162C9.87161 21.3919 10.8911 22 12 22V22C13.1089 22 14.1284 21.3919 14.6553 20.4162L15.6 18.6667M8.4 18.6667L8.63901 18.556C10.771 17.569 13.229 17.569 15.361 18.556L15.6 18.6667" stroke="#111111" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M18 10C19.1046 10 20 9.10457 20 8C20 6.89543 19.1046 6 18 6C16.8954 6 16 6.89543 16 8C16 9.10457 16.8954 10 18 10Z" fill="#111111"/>
+        </svg>
+
+				<span>Посмотреть отклик</span>
+      </div>
+			}
 		</div>
+
 	);
 };
 

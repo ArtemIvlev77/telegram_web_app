@@ -19,18 +19,33 @@ const Chart: FC<ChartOptionsType> = ({tripsPage, dealsPage}) => {
 	const {tripId} = useParams();
 	const [deals, setDeals] = useState<DealType[]>([]);
 
+	const getDeals = async () => {
+		try {
+			if (userInfo && tripId) {
+				const response = await getTripDeals(userInfo?.tgid, tripId)
+				if (response) {
+					console.log(response.payload)
+					setDeals([
+						{
+							id: 1,
+							header: 'Заявка №1',
+							status: 3,
+							organizName: 'TashkentAuto',
+							hasUnreadMessages: true,
+							messages: 45,
+						}
+					])
+				}
+			}
+		} catch (error) {
+			alert(error + 'error getDeals')
+		}
+
+	}
+
 	useEffect(() => {
 		// tripId && userInfo?.tgid && getTripDeals(userInfo?.tgid, tripId).then((res) => setDeals(res?.payload))
-		tripId && userInfo?.tgid && getTripDeals(userInfo?.tgid, tripId).then((res) => setDeals([
-			{
-				id: 1,
-				header: 'Заявка №1',
-				status: 3,
-				organizName: 'TashkentAuto',
-				hasUnreadMessages: true,
-				messages: 45,
-			}
-		]))
+		getDeals()
 
 	}, [tripId])
 	return (
@@ -66,7 +81,7 @@ const Chart: FC<ChartOptionsType> = ({tripsPage, dealsPage}) => {
 				          organizName={deal.organizName}
 				          hasUnreadMessages={deal.hasUnreadMessages}
 				          messages={deal.messages}
-				          routeCallBack={() => navigate(`/deals/${deal.id}`)}/>
+				          routeCallBack={getDeals}/>
 			))}
 			</div>
 		</div>

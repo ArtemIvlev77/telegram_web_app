@@ -13,7 +13,7 @@ const NotificationSticker: FC<NotificationStickerProps> = ({hasResponses, hasMes
 	return (
 		<div className="flex w-full justify-between gap-1 text-xs text-tg-text pl-2">
 			{hidden && <img src={hiddenIcon} alt="hiddenIcon" />}
-			<div>
+			<div className='justify-self-end'>
 			{hasMessages &&
         <div className="bg-statuses-success flex justify-center items-center py-1 px-2 rounded-lg font-bold"><img src={newMessageIcon} alt=""/> Новое
           Сообщение</div>}

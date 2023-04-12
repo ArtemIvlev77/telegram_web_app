@@ -9,8 +9,7 @@ import {ROLES} from '../enums/enums';
 import {useTelegram} from '../../hooks/useTelegram';
 import {OrganizationType, UserInfoType} from '../../utils/types';
 import {changeUserOrganization, getOrganizationTrips, getTripDeals, getUserData, switchUserRole} from '../../api';
-import { DealType} from '../../components/Chart/DealCard/DealCard';
-import {useParams} from 'react-router-dom';
+
 
 interface AccountContextType extends Object {
 	roleChangeHandler: () => void;

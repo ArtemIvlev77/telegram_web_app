@@ -37,12 +37,12 @@ const Header = () => {
 					<div className="flex justify-center justify-self-center bg-tg-primary-bg p-1 rounded-xl gap-2">
 						<RadioButton id={ROLES.sender}
 						             name={'role'}
-						             checked={role === ROLES.sender}
+						             checked={userInfo?.role === 1}
 						             changeHandler={roleChangeHandler}
 						             clickHandler={roleChangeHandler}/>
 						<RadioButton id={ROLES.executor}
 						             name={'role'}
-						             checked={role === ROLES.executor}
+						             checked={userInfo?.role === 2}
 						             changeHandler={roleChangeHandler}
 						             clickHandler={roleChangeHandler}/>
 					</div>

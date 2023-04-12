@@ -9,6 +9,7 @@ import Button from '../../shared/UI/Button';
 import list from '../../assets/list.svg';
 import flightSearch from '../../assets/flightSearch.svg'
 import eye from '../../assets/iconEye.svg';
+import {getTripsByTrips, showOrHideTrip} from '../../api';
 
 const Header = () => {
 	const {onClose,  tg} = useTelegram()
@@ -19,7 +20,7 @@ const Header = () => {
 		currentOrder,
 		organizations,
 		currentOrganization,
-		changeOrganizationHandler
+		changeOrganizationHandler,
 	} = useAccountContext();
 	const {state} = useLocation();
 
@@ -72,8 +73,11 @@ const Header = () => {
 						<h1 className="text-tg-text text-2xl">#{currentOrder} {state?.tripHeader}</h1>
 					</div>
 					<div className="flex justify-between w-full mt-2 p-2">
-						<Button img={flightSearch} clickHandler={() => console.log('asdas')} title={'Подобрать рейс'} className={'font-semibold bg-tg-button'}/>
-						<Button img={eye} clickHandler={() => console.log('asdasd')} className={'p-2 bg-tg-primary-bg'}/>
+						<Button img={flightSearch} clickHandler={() => {
+							userInfo && getTripsByTrips(userInfo.tgid, currentOrder)
+							onClose()
+						}} title={'Подобрать рейс'} className={'font-semibold bg-tg-button'}/>
+						<Button img={eye} clickHandler={() => showOrHideTrip(currentOrder)} className={'p-2 bg-tg-primary-bg'}/>
 					</div>
 				</>
 			)}

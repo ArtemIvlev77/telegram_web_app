@@ -122,3 +122,19 @@ export const unArchiveDeal = async (tgid: number, dealId: number, tripId: string
 		alert(e + 'error unArchiveDeal')
 	}
 }
+
+export const getTripsByTrips = async (tgid: number, tripId: number) => {
+	try{
+		const response = await axios.post(`${BASE_URL}/TakeTripsByTrips?tgid=${tgid}&tripId=${tripId}`)
+	} catch (e) {
+		alert(e + 'error getTripsByTrips')
+	}
+}
+
+export const showOrHideTrip = async (tripId: number) => {
+	try{
+		const response = await axios.post(`${BASE_URL}/ShowOrHideTrip?tripId=${tripId}`)
+	} catch (e) {
+		alert(e + 'error showOrHideTrip')
+	}
+}

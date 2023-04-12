@@ -94,9 +94,9 @@ const DealModal: FC<DealModalProps> = ({updateHandler, isOpen, closeHandler, sta
 			}
 			{status === INBOX_STATUS && <div
         className="w-full flex items-center justify-items-stretch gap-3 py-4 px-6 hover:bg-sky-500 cursor-pointer text-tg-text fill-tg-text rounded-md"
-        onClick={async () => {
-	        userInfo?.tgid && await unArchiveDeal(userInfo.tgid, dealId, tripId)
-	        updateHandler()
+        onClick={() => {
+	        userInfo?.tgid && openDealWithChat(userInfo.tgid, dealId)
+	        onClose()
         }}
       >
         <svg width="24" height="24" viewBox="0 0 24 24" fill="current" xmlns="http://www.w3.org/2000/svg">

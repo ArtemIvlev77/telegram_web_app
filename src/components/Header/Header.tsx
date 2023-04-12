@@ -68,7 +68,7 @@ const Header = () => {
 				</>
 			) : (
 				<>
-					<div className="flex items-center justify-start gap-2 p-2">
+					<div className="flex justify-start items-start gap-4 p-2">
 						<img src={list} alt="list"/>
 						<h1 className="text-tg-text text-2xl">#{currentOrder} {state?.tripHeader}</h1>
 					</div>

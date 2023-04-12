@@ -11,13 +11,15 @@ interface NotificationStickerProps {
 
 const NotificationSticker: FC<NotificationStickerProps> = ({hasResponses, hasMessages, hidden}) => {
 	return (
-		<div className="flex w-full justify-start gap-1 text-xs text-tg-text pl-2">
-			{hidden && <img src={hiddenIcon} alt="hiddenIcon"/>}
+		<div className="flex w-full justify-between gap-1 text-xs text-tg-text pl-2">
+			{hidden && <img src={hiddenIcon} alt="hiddenIcon" />}
+			<div>
 			{hasMessages &&
         <div className="bg-statuses-success flex justify-center items-center py-1 px-2 rounded-lg font-bold"><img src={newMessageIcon} alt=""/> Новое
           Сообщение</div>}
 			{hasResponses &&
         <div className="bg-statuses-inbox flex justify-center items-center gap-2 py-1 px-2 rounded-xl font-bold"><img src={bell} alt=""/> Новый отклик</div>}
+			</div>
 		</div>
 	);
 };

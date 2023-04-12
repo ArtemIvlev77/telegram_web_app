@@ -19,8 +19,8 @@ const TripCard: FC<ChartCardProps> = ({id, status, header, hasMessages, hasRespo
 	return (
 		<div className="rounded-2xl bg-tg-primary-bg p-2">
 			<div className="flex gap-2 justify-between items-center p-2" onClick={routeCallBack}>
-				<span className="font-bold text-tg-text basis-2/3">#{id} {header}</span>
-				<div className="relative flex box-border w-[200px] h-[50px] cursor-pointer">
+				<span className="font-bold text-tg-text basis-11/12">#{id} {header}</span>
+				<div className="relative flex box-border w-[200px] h-[50px] cursor-pointer basis-1/12">
 					<img className={'w-4 h-4 my-2 ml-auto'} src={arrow} alt="context-menu"/>
 				</div>
 			</div>

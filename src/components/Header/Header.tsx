@@ -69,7 +69,7 @@ const Header = () => {
 						<Button img={flightSearch} clickHandler={() => {
 							userInfo && getTripsByTrips(userInfo.tgid, currentOrder)
 							onClose()
-						}} title={'Подобрать рейс'} className={'font-semibold bg-tg-button'}/>
+						}} title={'Подобрать рейс'} className={'font-semibold tg-button'}/>
 						<Button img={eye} clickHandler={() => showOrHideTrip(currentOrder)} className={'p-2 bg-tg-primary-bg'}/>
 					</div>
 				</>

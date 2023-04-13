@@ -23,6 +23,7 @@ const Header = () => {
 		changeOrganizationHandler,
 	} = useAccountContext();
 	const {state} = useLocation();
+	alert(userInfo + 'userinfo')
 
 	return (
 		<header className="flex flex-col px-5 py-1 text-sm bg-tg-secondary-bg h-[20%] z-10">
